@@ -67,9 +67,7 @@ function checkStatus(guild) {
 							if (row.Muted == '1') {
 								member.setMute(true)
 									.then(console.log(`Muted ${member.user.id} from ${GuildID}. Reason: Set to muted.`));
-							} else if {
-								row.Muted == '0'
-							} {
+							} else if (row.Muted == '0') {
 								member.setMute(false)
 									.then(console.log(`Unmuted ${member.user.id} from ${GuildID}. Reason: Set to unmuted.`));
 							}
