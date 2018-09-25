@@ -11,7 +11,7 @@ To-Do
 	* Change the url in the quotation marks to your own url pointing to TTTDiscordZL.php at `local Webpage = "https://zlyfer.net/games/gmod_ttt/TTTDiscordZL.php"`
 ### Setup own database and website
 1. Move TTTDiscordZL.php to a directory on your webserver. Make sure it is exactly where `local Webpage` in TTTDiscordZL.lua is pointing to.
-2. Fill in your database credentials using the variables.
+2. Fill in your database credentials using the variables in TTTDiscordZL.php.
 3. Create a database called 'TTTDiscordZL' and invite your Discord bot to your Discord server.
 	* If you already invited the bot to the server simply restart the Discord bot.
 ### Setup own Discord Bot
