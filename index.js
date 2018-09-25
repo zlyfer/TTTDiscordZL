@@ -1,33 +1,38 @@
-process.chdir('/home/zlyfer/DiscordBots/TTTDiscordZL');
+// process.chdir('/home/zlyfer/DiscordBots/TTTDiscordZL');
 const mysql = require('mysql');
 const Discord = require('discord.js');
 const schedule = require('node-schedule');
 const token = require("./token.json");
 const mysql_config = require('./mysql_config.json');
-const sql = mysql.createConnection({
+var sql = mysql.createConnection({
 	host: mysql_config.host,
 	user: mysql_config.user,
 	password: mysql_config.password,
 	database: mysql_config.database
 });
-sql.connect();
+
+sql.connect(function(err) {
+	if (err) throw err;
+	console.log("Connected to MySQL Database!");
+});
+
 const client = new Discord.Client();
 client.login(token.token);
 const botPrefix = "~zltd~";
 
 function checkPerm(guild, permission) {
 	const botID = client.user.id;
-	var hasPerm = guild.members.find('id', botID).hasPermission(permission);
+	let hasPerm = guild.members.find('id', botID).hasPermission(permission);
 	return hasPerm
 }
 
 function getMember(guild, DiscordID) {
-	var member = guild.members.find('id', DiscordID);
+	let member = guild.members.find('id', DiscordID);
 	return member;
 }
 
 function getDiscordID(GuildID, SteamID64, callback) {
-	sql.query(`SELECT DiscordID FROM ${GuildID} WHERE SteamID64=${SteamID64}`, function(err, rows) {
+	sql.query("SELECT DiscordID FROM `" + GuildID + "` WHERE SteamID64 = " + SteamID64, (err, rows) => {
 		if (rows) {
 			var DiscordID = false;
 			for (let i = 0; i < rows.length; i++) {
@@ -41,7 +46,8 @@ function getDiscordID(GuildID, SteamID64, callback) {
 }
 
 function getSteamID64(GuildID, DiscordID, callback) {
-	sql.query(`SELECT SteamID64 FROM ${GuildID} WHERE DiscordID=${DiscordID}`, function(err, rows) {
+	sql.query("SELECT SteamID64 FROM `" + GuildID + "` WHERE DiscordID = " + DiscordID, (err, rows) => {
+		if (err) throw err;
 		if (rows) {
 			var SteamID64 = false;
 			for (let i = 0; i < rows.length; i++) {
@@ -56,18 +62,18 @@ function getSteamID64(GuildID, DiscordID, callback) {
 
 function checkStatus(guild) {
 	if (checkPerm(guild, "MUTE_MEMBERS")) {
-		var GuildID = guild.id;
-		sql.query(`SELECT * FROM ${GuildID}`, (err, rows) => {
+		let GuildID = guild.id;
+		sql.query("SELECT * FROM `" + GuildID + "`", (err, rows) => {
 			if (rows) {
 				if (rows.length != 0) {
-					for (let i = 0; i < rows.length; i++) {
+					for (let i = 1; i < 2; i++) {
 						let row = rows[i];
-						let member = getMember(row.DiscordID);
+						let member = getMember(guild, row.DiscordID);
 						if (member) {
-							if (row.Muted == '1') {
+							if (row.Muted == '1' && member.serverMute == false) {
 								member.setMute(true)
 									.then(console.log(`Muted ${member.user.id} from ${GuildID}. Reason: Set to muted.`));
-							} else if (row.Muted == '0') {
+							} else if (row.Muted == '0' && member.serverMute == true) {
 								member.setMute(false)
 									.then(console.log(`Unmuted ${member.user.id} from ${GuildID}. Reason: Set to unmuted.`));
 							}
@@ -80,15 +86,22 @@ function checkStatus(guild) {
 }
 
 function linkIDs(GuildID, DiscordID, SteamID64) {
-	sql.query(`INSERT INTO ${GuildID} (DiscordID, SteamID64, Muted) VALUES (${DiscordID}, ${SteamID64}, '0') ON DUPLICATE KEY UPDATE DiscordID=${DiscordID}, SteamID64=${SteamID64}, Muted='0'`);
+	sql.query(`INSERT INTO ${GuildID} (DiscordID, SteamID64, Muted) VALUES (${DiscordID}, ${SteamID64}, '0') ON DUPLICATE KEY UPDATE DiscordID=${DiscordID}, SteamID64=${SteamID64}, Muted='0'`, (err, result) => {
+		if (err) throw err;
+	});
 }
 
-function mute(GuildID, SteamID64) {
-	sql.query(`UPDATE ${GuildID} SET Muted='1' WHERE SteamID64='${SteamID64}'`)
-}
+// Not used yet.
+// function mute(GuildID, SteamID64) {
+// 	sql.query("UPDATE `" + GuildID + "` SET Muted='1' WHERE SteamID64 = " + SteamID64, (err, result) => {
+// 		if (err) throw err;
+// 	});
+// }
 
 function unmute(GuildID, SteamID64) {
-	sql.query(`UPDATE ${GuildID} SET Muted='0' WHERE SteamID64='${SteamID64}'`)
+	sql.query("UPDATE `" + GuildID + "` SET Muted='0' WHERE SteamID64 = " + SteamID64, (err, result) => {
+		if (err) throw err;
+	});
 }
 
 client.on('message', (message) => {
@@ -159,9 +172,15 @@ client.on('message', (message) => {
 	}
 });
 
-client.on('guildCreate', (guild) => {
+function guildInit(guild) {
 	var GuildID = guild.id;
-	sql.query(`CREATE TABLE IF NOT EXISTS ${GuildID} (DiscordID VARCHAR(64) NOT NULL, SteamID64 VARCHAR(64) NOT NULL, Muted TINYINT(1) NOT NULL, UNIQUE ID (DiscordID))`);
+	sql.query("CREATE TABLE IF NOT EXISTS `" + GuildID + "` (DiscordID VARCHAR(64) NOT NULL, SteamID64 VARCHAR(64) NOT NULL, Muted TINYINT(1) NOT NULL, UNIQUE ID (DiscordID))", (err, result) => {
+		if (err) throw err;
+	});
+}
+
+client.on('guildCreate', (guild) => {
+	guildInit(guild);
 });
 
 client.on('ready', () => {
@@ -173,6 +192,10 @@ client.on('ready', () => {
 			}
 		})
 		.then(console.log("Bot ready."));
+
+	for (let i = 0; i < client.guilds.array().length; i++) {
+		guildInit(client.guilds.array()[i]);
+	}
 
 	schedule.scheduleJob('*/1 * * * * *', function() {
 		var guilds = client.guilds.array();
