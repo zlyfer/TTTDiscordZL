@@ -4,11 +4,11 @@
 To-Do
 ## Getting Started
 ### Garry's Mod Server
-Move TTTDiscordZL.lua to GMOD_SERVER_DIRECTORY/garrysmod/lua/autorun/server.
-Insert your Discord server ID into the quotation marks at `local DiscordID = ""`.
-Restart your Garry's Mod server.
-Only if you want to use your own Discord server & database:
-Change the url in the quotation marks to your own url pointing to TTTDiscordZL.php at `local Webpage = "https://zlyfer.net/games/gmod_ttt/TTTDiscordZL.php"`
+1. Move TTTDiscordZL.lua to GMOD_SERVER_DIRECTORY/garrysmod/lua/autorun/server.
+2. Insert your Discord server ID into the quotation marks at `local DiscordID = ""`.
+3. Restart your Garry's Mod server.
+4. Only if you want to use your own Discord server & database:
+	* Change the url in the quotation marks to your own url pointing to TTTDiscordZL.php at `local Webpage = "https://zlyfer.net/games/gmod_ttt/TTTDiscordZL.php"`
 ### Setup own database and website
 Move TTTDiscordZL.php to a directory on your webserver. Make sure it is exactly where `local Webpage` in TTTDiscordZL.lua is pointing to.
 Create a database called 'TTTDiscordZL' and invite your Discord bot to your Discord server.
