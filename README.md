@@ -1,7 +1,7 @@
 # TTTDiscordZL
 ### Connect a Garry's Mod Server with a Discord Server!
 ## Info
-To-Do
+To-Be-Added!
 ## Getting Started
 ### Garry's Mod Server
 1. Move TTTDiscordZL.lua to GMOD_SERVER_DIRECTORY/garrysmod/garrysmod/lua/autorun/server.
@@ -31,4 +31,4 @@ To-Do
 ## Disclaimer
 The bot will be able to server-side un/mute people on your discord server!
 At the moment everyone can mute people on your Discord server if they know it's ID and the SteamID64 of a specific person on your Discord server (if linked in database).
-Future security measures are already planed.
+Future security measures are already planned.
