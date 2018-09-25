@@ -18,15 +18,15 @@ To-Do
 2. Rename mysql_config_template.json to mysql_config.json and add your database credentials.
 3. Install bot dependencies and start the bot
 	* #### Using [npm](https://www.npmjs.com/)
-		* ##### Install dependencies
+		1. ##### Install dependencies
 		  `npm install`
-		* ##### Run
-	 	 `npm start`
+		2. ##### Run
+		  `npm start`
 	* #### Using [yarn](https://yarnpkg.com/)
-		* ##### Install dependencies
+		1. ##### Install dependencies
 		  `yarn install`
-		* ##### Run
-	   `yarn start`
+		2. ##### Run
+		  `yarn start`
 ## Disclaimer
 The bot will be able to server-side un/mute people on your discord server!
 At the moment everyone can mute people on your Discord server if they know it's ID and the SteamID64 of a specific person on your Discord server (if linked in database).
