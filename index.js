@@ -149,9 +149,9 @@ function checkToken(guild) {
 				} else if (resulti.TokenSent == 0) {
 					tokenProcess("send", guild);
 				}
+			} else {
+				tokenProcess("create", guild);
 			}
-		} else {
-			tokenProcess("create", guild);
 		}
 	});
 }
