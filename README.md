@@ -33,12 +33,12 @@ I made an [in depth tutorial](IDLinkTutorial.md) which should help how to access
  1. Rename token_template.json to token.json and insert your Discord bot token into the quotation marks.
  2. Rename mysql_config_template.json to mysql_config.json and add your database credentials.
  3. Install bot dependencies and start the bot
-	#### Using [npm](https://www.npmjs.com/)
+#### Using [npm](https://www.npmjs.com/)
 ```
 npm install
 npm start
 ```
-	#### Using [yarn](https://yarnpkg.com/)
+#### Using [yarn](https://yarnpkg.com/)
 ```
 yarn install
 yarn start
