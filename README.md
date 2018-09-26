@@ -28,20 +28,20 @@ Whether you want a quick setup using my service or want to setup everything by y
 2. Rename mysql_config_template.json to mysql_config.json and add your database credentials.
 3. Install bot dependencies and start the bot
 - #### Using [npm](https://www.npmjs.com/)
-	1. ##### Install dependencies
+1. ##### Install dependencies
 ```
 npm install
 ```
-	2. ##### Run
+2. ##### Run
 ```
 npm start
 ```
 - #### Using [yarn](https://yarnpkg.com/)
-	1. ##### Install dependencies
+1. ##### Install dependencies
 ```
 yarn install
 ```
-	2. ##### Run
+2. ##### Run
 ```
 yarn start
 ```
