@@ -28,7 +28,7 @@ Whether you want a quick setup using my service or want to setup everything by y
 ### Configurate the Discord Bot
 Every player has to tell the bot which SteamID64 they have.
 Basically you have to use the command `~zltd~link STEAMID64` to link your DiscordID with your SteamID64 so the bot can mute you when you die.
-I made a [in depth tutorial](IDLinkTutorial.md) which should help how to access your SteamID64 and how to properly link it with your DiscordID.
+I made an [in depth tutorial](IDLinkTutorial.md) which should help how to access your SteamID64 and how to properly link it with your DiscordID.
 ### [_OPTIONAL_] Setup own Discord Bot
 1. Rename token_template.json to token.json and insert your Discord bot token into the quotation marks.
 2. Rename mysql_config_template.json to mysql_config.json and add your database credentials.
