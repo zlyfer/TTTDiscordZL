@@ -66,7 +66,7 @@ I made an [in depth tutorial](IDLinkTutorial.md) which should help on how to acc
  2. Fill in your database credentials using the variables in _TTTDiscordZL.php_.
  3. Create a database called 'TTTDiscordZL' and invite your Discord bot to your Discord server.
     - If you already invited the bot to the server simply restart the Discord bot.
-### How to Basic
+## How to Basic
 If you don't know how to make your own Discord bot, install npm or similar you should stick to the [Simple Way](#1-simple-way).
 
 In case you want to use the [Advanced Way](#2-advanced-way) anyway the links below might help you but please read the [Disclaimer](#disclaimer) first.
