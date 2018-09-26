@@ -6,9 +6,9 @@ Connect a Garry's Mod Server with a Discord Server!
 ### Your Options
 Whether you want a quick setup using my service or want to setup everything by yourself you have two options:
 #### 1. Simple Way
-        - [Install](#install-garrys-mod-server-script) the server script.
-        - [Add](#add-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
-        - [Configurate](#configurate-the-discord-bot) the Discord bot.
+ - [Install](#install-garrys-mod-server-script) the server script.
+ - [Add](#add-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
+ - [Configurate](#configurate-the-discord-bot) the Discord bot.
 #### 2. Advanced Way
  - [Install](#install-garrys-mod-server-script) the server script.
  - [Setup](#optional-setup-own-discord-bot) your own Discord bot.
@@ -34,15 +34,15 @@ I made an [in depth tutorial](IDLinkTutorial.md) which should help how to access
  2. Rename mysql_config_template.json to mysql_config.json and add your database credentials.
  3. Install bot dependencies and start the bot
 	#### Using [npm](https://www.npmjs.com/)
-	```
-	npm install
-	npm start
-	```
+```
+npm install
+npm start
+```
 	#### Using [yarn](https://yarnpkg.com/)
-	```
-	yarn install
-	yarn start
-	```
+```
+yarn install
+yarn start
+```
 ### [_OPTIONAL_] Setup own Database and Website
  1. Move TTTDiscordZL.php to a directory on your webserver. Make sure it is exactly where `local Webpage` in TTTDiscordZL.lua is pointing to.
  2. Fill in your database credentials using the variables in TTTDiscordZL.php.
