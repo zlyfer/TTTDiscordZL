@@ -5,13 +5,15 @@ Connect a Garry's Mod Server with a Discord Server!
 ### How it Works
 ### Your Options
 Whether you want a quick setup using my service or want to setup everything by yourself you have two options:
-#### 1. Simple Way
-- [Install](https://github.com/zlyfer/TTTDiscordZL#install-garrys-mod-server-script) the server script.
-- [Add](https://github.com/zlyfer/TTTDiscordZL#add-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
-#### 2. Advanced Way
-- Do everything in the [Simple Way](https://github.com/zlyfer/TTTDiscordZL#1-simple-way).
-- [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-discord-bot) your own Discord bot.
-- [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-database-and-website) your own Database and Website.
+	#### 1. Simple Way
+	- [Install](https://github.com/zlyfer/TTTDiscordZL#install-garrys-mod-server-script) the server script.
+	- [Add](https://github.com/zlyfer/TTTDiscordZL#add-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
+	- [Configurate](https://github.com/zlyfer/TTTDiscordZL#configurate-the-discord-bot) the Discord bot.
+	#### 2. Advanced Way
+	- [Install](https://github.com/zlyfer/TTTDiscordZL#install-garrys-mod-server-script) the server script.
+	- [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-discord-bot) your own Discord bot.
+	- [Configurate](https://github.com/zlyfer/TTTDiscordZL#configurate-the-discord-bot) the Discord bot.
+	- [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-database-and-website) your own Database and Website.
 ## Getting Started
 ### Install Garry's Mod Server Script
 1. Move TTTDiscordZL.lua to GMOD_SERVER_DIRECTORY/garrysmod/garrysmod/lua/autorun/server.
@@ -23,6 +25,10 @@ Whether you want a quick setup using my service or want to setup everything by y
 1. Use this link to add my bot TTTDiscordZL to your Discord server: [Discord Bot Invite](https://discordapp.com/oauth2/authorize?client_id=424687518966087682&scope=bot&permissions=4194304)
 	- Keep in mind that the bot needs following rights: **MUTE/DEAF**
 	- See [Discord Bot Permissions](https://discordapp.com/developers/docs/topics/permissions) for reference.
+### Configurate the Discord Bot
+Every player has to tell the bot which SteamID64 they have.
+Basically you have to use the command `~zltd~link STEAMID64` to link your DiscordID with your SteamID64 so the bot can mute you when you die.
+I made a [in depth tutorial](link-to-be-added) which should help how to access your SteamID64 and how to properly link it with your DiscordID.
 ### [_OPTIONAL_] Setup own Discord Bot
 1. Rename token_template.json to token.json and insert your Discord bot token into the quotation marks.
 2. Rename mysql_config_template.json to mysql_config.json and add your database credentials.
