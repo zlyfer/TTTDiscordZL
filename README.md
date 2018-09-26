@@ -9,8 +9,9 @@ Whether you want a quick setup using my service or want to setup everything by y
 - [Install](https://github.com/zlyfer/TTTDiscordZL#install-garrys-mod-server-script) the server script.
 - [Add](https://github.com/zlyfer/TTTDiscordZL#add-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
 #### 2. Advanced Way
-- Do everything in the Simple Way.
-- [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-discord-bot) your own Discord bot and [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-database-and-website) your own Database and Website.
+- Do everything in the [Simple Way](https://github.com/zlyfer/TTTDiscordZL#1-simple-way).
+- [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-discord-bot) your own Discord bot.
+- [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-database-and-website) your own Database and Website.
 ## Getting Started
 ### Install Garry's Mod Server Script
 1. Move TTTDiscordZL.lua to GMOD_SERVER_DIRECTORY/garrysmod/garrysmod/lua/autorun/server.
@@ -26,16 +27,16 @@ Whether you want a quick setup using my service or want to setup everything by y
 1. Rename token_template.json to token.json and insert your Discord bot token into the quotation marks.
 2. Rename mysql_config_template.json to mysql_config.json and add your database credentials.
 3. Install bot dependencies and start the bot
-	- #### Using [npm](https://www.npmjs.com/)
-		1. ##### Install dependencies
-		  `npm install`
-		2. ##### Run
-		  `npm start`
-	- #### Using [yarn](https://yarnpkg.com/)
-		1. ##### Install dependencies
-		  `yarn install`
-		2. ##### Run
-		  `yarn start`
+- #### Using [npm](https://www.npmjs.com/)
+	1. ##### Install dependencies
+	  `npm install`
+	2. ##### Run
+	  `npm start`
+- #### Using [yarn](https://yarnpkg.com/)
+	1. ##### Install dependencies
+	  `yarn install`
+	2. ##### Run
+	  `yarn start`
 ### [_OPTIONAL_] Setup own Database and Website
 1. Move TTTDiscordZL.php to a directory on your webserver. Make sure it is exactly where `local Webpage` in TTTDiscordZL.lua is pointing to.
 2. Fill in your database credentials using the variables in TTTDiscordZL.php.
