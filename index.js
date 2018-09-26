@@ -139,7 +139,9 @@ function checkToken(guild) {
 	console.log("test2");
 	sql.query("SELECT TokenSent FROM `tokens` WHERE GuildID = " + guild.id, (err, result) => {
 		if (err) throw err;
+		console.log("test3");
 		if (result) {
+			console.log("test4");
 			if (result.length != 0) {
 				let resulti = result[0];
 				if (resulti.TokenSent == 1) {
