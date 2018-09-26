@@ -5,12 +5,12 @@ Connect a Garry's Mod Server with a Discord Server!
 ### How it Works
 ### Your Options
 Whether you want a quick setup using my service or want to setup everything by yourself you have two options:
-* Simple Way
-	1. [Install](https://github.com/zlyfer/TTTDiscordZL#install-garrys-mod-server-script) the server script.
-	2. [Add](https://github.com/zlyfer/TTTDiscordZL#add-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
-* Advanced Way
-	1. Do everything in the [Simpliest Way]().
-	2. [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-discord-bot) your own Discord bot and [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-database-and-website) your own Database and Website.
+####1. Simple Way
+	* [Install](https://github.com/zlyfer/TTTDiscordZL#install-garrys-mod-server-script) the server script.
+	* [Add](https://github.com/zlyfer/TTTDiscordZL#add-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
+####2. Advanced Way
+	* Do everything in the Simple Way.
+	* [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-discord-bot) your own Discord bot and [Setup](https://github.com/zlyfer/TTTDiscordZL#optional-setup-own-database-and-website) your own Database and Website.
 ## Getting Started
 ### Install Garry's Mod Server Script
 1. Move TTTDiscordZL.lua to GMOD_SERVER_DIRECTORY/garrysmod/garrysmod/lua/autorun/server.
