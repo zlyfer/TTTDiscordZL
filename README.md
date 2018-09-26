@@ -68,12 +68,14 @@ I made an [in depth tutorial](IDLinkTutorial.md) which should help on how to acc
 ### How to Basic
 If you don't know how to make your own Discord bot, install npm or similar you should stick to the [Simple Way](#1-simple-way).
 
-In case you want to use the [Advanced Way](#2-advanced-way) the links below might help you but please read the [Disclaimer](#disclaimer) first.
+In case you want to use the [Advanced Way](#2-advanced-way) anyway the links below might help you but please read the [Disclaimer](#disclaimer) first.
 - How to [make](https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/) a Discord bot.
 - What is [npm](https://docs.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com/en/docs/getting-started).
 - Yarn [vs](https://blog.risingstack.com/yarn-vs-npm-node-js-package-managers/) npm.
-- How to install [npm](https://www.npmjs.com/get-npm) or [yarn](https://yarnpkg.com/en/docs/install#windows-stable).
-- How to open [CommandPrompt](https://www.lifewire.com/how-to-open-command-prompt-2618089) or [PowerShell](https://www.tenforums.com/tutorials/25581-open-windows-powershell-windows-10-a.html) on Windows; Or the [Terminal](https://www.lifewire.com/ways-to-open-a-terminal-console-window-using-ubuntu-4075024) on Linux.
+- How to install [npm](https://www.npmjs.com/get-npm) or [yarn](https://yarnpkg.com/en/docs/install#windows-stable) on Windows.
+- How to install [npm](https://blog.teamtreehouse.com/install-node-js-npm-linux) or [yarn](https://yarnpkg.com/lang/en/docs/install/#debian-stable) on Linux.
+- How to open the [CommandPrompt](https://www.lifewire.com/how-to-open-command-prompt-2618089) or [PowerShell](https://www.tenforums.com/tutorials/25581-open-windows-powershell-windows-10-a.html) on Windows.
+- How to open the [Terminal](https://www.lifewire.com/ways-to-open-a-terminal-console-window-using-ubuntu-4075024) on Linux.
 ## Disclaimer
 ### About the Advanced Way
 The links and tutorials are quickly searched in a haste.
