@@ -1,4 +1,4 @@
-// process.chdir('/home/zlyfer/DiscordBots/TTTDiscordZL');
+process.chdir('/home/zlyfer/DiscordBots/TTTDiscordZL');
 const mysql = require('mysql');
 const Discord = require('discord.js');
 const schedule = require('node-schedule');
