@@ -107,6 +107,7 @@ function unmute(GuildID, SteamID64) {
 }
 
 function init(guild) {
+	console.log("test1");
 	sql.query("CREATE TABLE IF NOT EXISTS `tokens` (GuildID VARCHAR(64) NOT NULL, Token VARCHAR(18) NOT NULL, TokenSent TINYINT(1) NOT NULL, UNIQUE ID (GuildID))", (err, result) => {
 		if (err) throw err;
 	});
@@ -117,6 +118,7 @@ function init(guild) {
 function tokenProcess(tokenCheck, guild) {
 	switch (tokenCheck) {
 		case "create":
+			console.log("test");
 			createToken(guild);
 			break;
 		case "send":
@@ -139,9 +141,9 @@ function checkToken(guild) {
 		if (result) {
 			if (result.length != 0) {
 				let resulti = result[0];
-				if (resulti.TokenSent) {
+				if (resulti.TokenSent == 1) {
 					tokenProcess(false, guild);
-				} else {
+				} else if (resulti.TokenSent == 0) {
 					tokenProcess("send", guild);
 				}
 			}
@@ -272,9 +274,8 @@ client.on('ready', () => {
 	}
 
 	schedule.scheduleJob('*/1 * * * * *', function() {
-		var guilds = client.guilds.array();
-		for (let i = 0; i < guilds.length; i++) {
-			checkStatus(guilds[i]);
+		for (let i = 0; i < client.guilds.array().length; i++) {
+			checkStatus(client.guilds.array()[i]);
 		}
 	});
 });
