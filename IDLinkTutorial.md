@@ -12,7 +12,7 @@ If you don't know your own SteamID64 follow these steps:
     2. Extract your SteamID64 from the URL. Your SteamID64 will look similar to this: `76561198079587349`.
  3. In case you are using a custom URL like `http://steamcommunity.com/id/zlyfer` go to [Steam ID Finder](https://steamidfinder.com/) and insert the URL.
  4. After clicking **Get SteamId** you will see multiple information about your profile. Copy the number next to **steamID64**.
- 5. You now have your SteamID64.
+ 5. You should now have your SteamID64.
 ## How to tell the bot your SteamID64
  1. Make sure you copied **only** your SteamID64.
  2. Go into Discord and access the right server.
