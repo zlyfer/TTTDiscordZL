@@ -136,6 +136,7 @@ function guildInit(guild) {
 }
 
 function checkToken(guild) {
+	console.log("test2");
 	sql.query("SELECT TokenSent FROM `tokens` WHERE GuildID = " + guild.id, (err, result) => {
 		if (err) throw err;
 		if (result) {
