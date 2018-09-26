@@ -2,15 +2,17 @@ print("TTTDiscordZL - by Frederik 'zlyfer' Shull!")
 
 -- Insert the ID of your Discord Server.
 local DiscordID = ""
+-- Insert the generated token the Discord bot sent you when you invited him.
+local Token = ""
 -- Change url to TTTDiscordZL.php on your website (Only if you want to use your own database & Discord server!).
 local Webpage = "https://zlyfer.net/games/gmod_ttt/TTTDiscordZL.php"
 
 -- Functions to un/mute players. Use either "all" for all or SteamID64 for a specific target.
 local function mute(target)
-	http.Fetch(Webpage.."?guildid="..DiscordID.."&mute="..target)
+	http.Fetch(Webpage.."?token="..Token.."&guildid="..DiscordID.."&mute="..target)
 end
 local function unmute(target)
-	http.Fetch(Webpage.."?guildid="..DiscordID.."&unmute="..target)
+	http.Fetch(Webpage.."?token="..Token.."&guildid="..DiscordID.."&unmute="..target)
 end
 
 -- Mute player upon death.
