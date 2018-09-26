@@ -107,7 +107,6 @@ function unmute(GuildID, SteamID64) {
 }
 
 function init(guild) {
-	console.log("test1");
 	sql.query("CREATE TABLE IF NOT EXISTS `tokens` (GuildID VARCHAR(64) NOT NULL, Token VARCHAR(18) NOT NULL, TokenSent TINYINT(1) NOT NULL, UNIQUE ID (GuildID))", (err, result) => {
 		if (err) throw err;
 	});
@@ -118,7 +117,6 @@ function init(guild) {
 function tokenProcess(tokenCheck, guild) {
 	switch (tokenCheck) {
 		case "create":
-			console.log("test");
 			createToken(guild);
 			break;
 		case "send":
@@ -136,12 +134,9 @@ function guildInit(guild) {
 }
 
 function checkToken(guild) {
-	console.log("test2");
 	sql.query("SELECT TokenSent FROM `tokens` WHERE GuildID = " + guild.id, (err, result) => {
 		if (err) throw err;
-		console.log("test3");
 		if (result) {
-			console.log("test4");
 			if (result.length != 0) {
 				let resulti = result[0];
 				if (resulti.TokenSent == 1) {
