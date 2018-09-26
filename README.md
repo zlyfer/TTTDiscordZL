@@ -12,6 +12,7 @@ Basically there are three components that work together to make the magic happen
  - The Garry's Mod server script
  - The webpage & database
  - The Discord bot
+
 And this is how they work together:
  1. When someone dies or respawns in game the server script will send a request to my (or your) webpage including the info which player to target and whether to mute or unmute them.
  2. The webpage will edit the specific table corresponding to your Discord server which was created by the Discord bot.
