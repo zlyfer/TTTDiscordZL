@@ -29,14 +29,22 @@ Whether you want a quick setup using my service or want to setup everything by y
 3. Install bot dependencies and start the bot
 - #### Using [npm](https://www.npmjs.com/)
 	1. ##### Install dependencies
-	  `npm install`
+	  ```
+			npm install
+			```
 	2. ##### Run
-	  `npm start`
+	  ```
+			npm start
+			```
 - #### Using [yarn](https://yarnpkg.com/)
 	1. ##### Install dependencies
-	  `yarn install`
+	  ```
+			yarn install
+			```
 	2. ##### Run
-	  `yarn start`
+	  ```
+			yarn start
+			```
 ### [_OPTIONAL_] Setup own Database and Website
 1. Move TTTDiscordZL.php to a directory on your webserver. Make sure it is exactly where `local Webpage` in TTTDiscordZL.lua is pointing to.
 2. Fill in your database credentials using the variables in TTTDiscordZL.php.
