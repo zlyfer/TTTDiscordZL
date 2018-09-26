@@ -3,6 +3,7 @@ This tutorial will cover how to control the Discord bot TTTDiscordZL including:
  - Access your own SteamID64.
  - Link your SteamID64 with your DiscordID.
  - Manually unmute yourself via TTTDiscordZL.
+
 In any cases you can use the command `~zltd~help` to receive help from the bot itself within Discord.
 ## How to access your own SteamID64
 If you don't know your own SteamID64 follow these steps:
