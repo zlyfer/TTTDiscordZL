@@ -37,8 +37,9 @@ Whether you want a quick setup using my service or want to setup everything by y
  4. [**_OPTIONAL_**] Only if you want to use your own Discord server & database:
     * Change the URL in the quotation marks to your own URL pointing to TTTDiscordZL.php at `local Webpage = "https://zlyfer.net/games/gmod_ttt/TTTDiscordZL.php"`.
 ### Add Discord Bot to your own Discord Server
- 1. Use this link to add my bot TTTDiscordZL to your Discord server: [Discord Bot Invite](https://discordapp.com/oauth2/authorize?client_id=424687518966087682&scope=bot&permissions=4194304).
-    - Keep in mind that the bot needs following rights: **MUTE/DEAF**.
+ 1. Use this link to add my bot TTTDiscordZL to your Discord server: [Discord Bot Invite](https://discordapp.com/oauth2/authorize?client_id=424687518966087682&scope=bot&permissions=4197376).
+    - Keep in mind that the bot needs following rights: _MUTE_MEMBERS_ and _VIEW_CHANNEL_.
+    - The permission for _SEND_MESSAGES_ is not mandatory but **extremely recommended**!
     - See [Discord Bot Permissions](https://discordapp.com/developers/docs/topics/permissions) for reference.
 ### Configurate the Discord Bot
 Every player has to tell the bot which SteamID64 they have.
