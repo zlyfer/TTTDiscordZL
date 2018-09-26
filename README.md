@@ -33,23 +33,23 @@ Whether you want a quick setup using my service or want to setup everything by y
 ### Install Garry's Mod Server Script
  1. Move _TTTDiscordZL.lua_ to _GMOD_SERVER_DIRECTORY/garrysmod/garrysmod/lua/autorun/server_.
  2. Insert your Discord server ID into the quotation marks at `local DiscordID = ""`.
-	3. Insert your token you received from the Discord bot into the quotation marks at `local Token = ""`.
- 3. Restart your Garry's Mod server.
- 4. [**_OPTIONAL_**] Only if you want to use your own Discord server & database:
+ 3. Insert your token you received from the Discord bot into the quotation marks at `local Token = ""`.
+ 4. Restart your Garry's Mod server.
+ 5. [**OPTIONAL**] Only if you want to use your own Discord server & database:
     * Change the URL in the quotation marks to your own URL pointing to TTTDiscordZL.php at `local Webpage = "https://zlyfer.net/games/gmod_ttt/TTTDiscordZL.php"`.
 ### Add Discord Bot To Your Own Discord Server
  1. Use this link to add my bot TTTDiscordZL to your Discord server: [Discord Bot Invite](https://discordapp.com/oauth2/authorize?client_id=424687518966087682&scope=bot&permissions=4197376).
     - Keep in mind that the bot needs following rights: _MUTE_MEMBERS_ and _VIEW_CHANNEL_.
     - The permission for _SEND_MESSAGES_ is not mandatory but **extremely recommended**!
     - See [Discord Bot Permissions](https://discordapp.com/developers/docs/topics/permissions) for reference.
-	2. Upon invitation the bot will send you your token. You need to [insert](#install-garrys-mod-server-script) the token within _TTTDiscordZL.lua_.
+ 2. Upon invitation the bot will send you your token. You need to [insert](#install-garrys-mod-server-script) the token within _TTTDiscordZL.lua_.
 ### Configurate The Discord Bot
 Every player has to tell the bot which SteamID64 they have.
 
 Basically you have to use the command `~zltd~link STEAMID64` to link your DiscordID with your SteamID64 so the bot can mute you when you die.
 
 I made an [in depth tutorial](IDLinkTutorial.md) which should help on how to access your SteamID64 and how to properly link it with your DiscordID.
-### [_OPTIONAL_] Setup Own Discord Bot
+### [OPTIONAL] Setup Own Discord Bot
  1. Rename _token_template.json_ to _token.json_ and insert your Discord bot token into the quotation marks.
  2. Rename _mysql_config_template.json_ to _mysql_config.json_ and add your database credentials.
  3. Install bot dependencies and start the bot.
@@ -63,7 +63,7 @@ I made an [in depth tutorial](IDLinkTutorial.md) which should help on how to acc
 	yarn install
 	yarn start
 	```
-### [_OPTIONAL_] Setup Own Database And Webpage
+### [OPTIONAL] Setup Own Database And Webpage
  1. Move _TTTDiscordZL.php_ to a directory on your webserver. Make sure it is exactly where `local Webpage` in _TTTDiscordZL.lua_ is pointing to.
  2. Fill in your database credentials using the variables in _TTTDiscordZL.php_.
  3. Create a database called 'TTTDiscordZL' and invite your Discord bot to your Discord server.
