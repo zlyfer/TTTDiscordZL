@@ -69,7 +69,7 @@ I made an [in depth tutorial](IDLinkTutorial.md) which should help on how to acc
 If you don't know how to make your own Discord bot, install npm or similar you should stick to the [Simple Way](#1-simple-way).
 
 In case you want to use the [Advanced Way](#2-advanced-way) anyway the links below might help you but please read the [Disclaimer](#disclaimer) first.
-- How to [make](https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/) a Discord bot.
+- How to [make](https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/) a Discord bot and invite it to your Discord server.
 - What is [npm](https://docs.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com/en/docs/getting-started).
 - Yarn [vs](https://blog.risingstack.com/yarn-vs-npm-node-js-package-managers/) npm.
 - How to install [npm](https://www.npmjs.com/get-npm) or [yarn](https://yarnpkg.com/en/docs/install#windows-stable) on Windows.
