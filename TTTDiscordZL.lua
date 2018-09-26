@@ -25,7 +25,7 @@ hook.Add("PlayerSpawn", "TTTDiscordZLPlayerSpawn", function (player)
 		unmute(player:SteamID64())
 	end
 end)
--- Optional: Unmute player upon found corpse. No recommended for large player groups.
+-- Optional: Unmute player upon found corpse. Not recommended for large player groups.
 --[[
 hook.Add("TTTBodyFound", "TTTDiscordZLBodyFound", function(player, deadplayer, rag)
 	if GAMEMODE_NAME == "terrortown" then
