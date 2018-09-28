@@ -37,12 +37,12 @@ Whether you want a quick setup using my service or want to setup everything by y
  4. Restart your Garry's Mod server.
  5. [**OPTIONAL**] Only if you want to use your own Discord server & database:
     * Change the URL in the quotation marks to your own URL pointing to TTTDiscordZL.php at `local Webpage = "https://zlyfer.net/games/gmod_ttt/TTTDiscordZL.php"`.
-### Add Discord Bot To Your Own Discord Server
+### Add The Discord Bot To Your Own Discord Server
  1. Use this link to add my bot TTTDiscordZL to your Discord server: [Discord Bot Invite](https://discordapp.com/oauth2/authorize?client_id=424687518966087682&scope=bot&permissions=4197376).
     - Keep in mind that the bot needs following rights: _MUTE_MEMBERS_ and _VIEW_CHANNEL_.
     - The permission for _SEND_MESSAGES_ is not mandatory but **extremely recommended**!
     - See [Discord Bot Permissions](https://discordapp.com/developers/docs/topics/permissions) for reference.
- 2. Upon invitation the bot will send you your token. You need to [insert](#install-garrys-mod-server-script) the token within _TTTDiscordZL.lua_.
+ 2. Upon invitation the bot will send you a token. As [mentioned](#install-garrys-mod-server-script), you need to insert this token inside of _TTTDiscordZL.lua_.
 ### Configurate The Discord Bot
 Every player has to tell the bot which SteamID64 they have.
 
@@ -77,7 +77,7 @@ In case you want to use the [Advanced Way](#2-advanced-way) anyway the links bel
 - Yarn [vs](https://blog.risingstack.com/yarn-vs-npm-node-js-package-managers/) npm.
 - How to install [npm](https://www.npmjs.com/get-npm) or [yarn](https://yarnpkg.com/en/docs/install#windows-stable) on Windows.
 - How to install [npm](https://blog.teamtreehouse.com/install-node-js-npm-linux) or [yarn](https://yarnpkg.com/lang/en/docs/install/#debian-stable) on Linux.
-- How to open the [CommandPrompt](https://www.lifewire.com/how-to-open-command-prompt-2618089) or [PowerShell](https://www.tenforums.com/tutorials/25581-open-windows-powershell-windows-10-a.html) on Windows.
+- How to open the [Command Prompt](https://www.lifewire.com/how-to-open-command-prompt-2618089) or [PowerShell](https://www.tenforums.com/tutorials/25581-open-windows-powershell-windows-10-a.html) on Windows.
 - How to open the [Terminal](https://www.lifewire.com/ways-to-open-a-terminal-console-window-using-ubuntu-4075024) on Linux.
 ## Disclaimer
 ### About The Advanced Way
