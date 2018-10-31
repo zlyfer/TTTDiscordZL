@@ -5,7 +5,7 @@ local DiscordID = ""
 -- Insert the generated token the Discord bot sent you when you invited him.
 local Token = ""
 -- Change url to TTTDiscordZL.php on your website (Only if you want to use your own database & Discord server!).
-local Webpage = "https://zlyfer.net/games/gmod_ttt/TTTDiscordZL.php"
+local Webpage = "https://zlyfer.net/sites/games/gmod_ttt/TTTDiscordZL.php"
 
 -- Functions to un/mute players. Use either "all" for all or SteamID64 for a specific target.
 local function mute(target)
@@ -42,10 +42,8 @@ hook.Add("TTTPrepareRound", "TTTDiscordZLPrepareRound", function ()
 	end
 end)
 -- Same as above but faster and less secure; If player get killed post round they will be muted again.
---[[
 hook.Add("TTTEndRound", "TTTDiscordZLEndRound", function (result)
 	if GAMEMODE_NAME == "terrortown" then
 		unmute("all")
 	end
 end)
-]]--
