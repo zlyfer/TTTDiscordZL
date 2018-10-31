@@ -68,7 +68,7 @@ function checkStatus(guild) {
 		sql.query("SELECT * FROM `" + GuildID + "`", (err, result) => {
 			if (result) {
 				if (result.length != 0) {
-					for (let i = 1; i < 2; i++) {
+					for (let i = 1; i < result.length; i++) {
 						let resulti = result[i];
 						let member = getMember(guild, resulti.DiscordID);
 						if (member) {
