@@ -1,7 +1,7 @@
 <?php
-
-$sqlUser = "";
-$sqlPassword = "";
+error_reporting(0);
+// Path to sql_credentials.php
+include('./sql_credentials.php');
 $sqlServer = "127.0.0.1";
 $sqlDatabase = "TTTDiscordZL";
 
@@ -35,6 +35,11 @@ if (isset($_GET['token'])) {
 						$sql->query("UPDATE `$GuildID` SET `Muted` = '0' WHERE `SteamID64` = '$unmute'");
 						echo("Unmuted $unmute!");
 					}
+				}
+				if (isset($_GET['linkDiscordID']) && isset($_GET['linkSteamID64'])) {
+					$linkDiscordID = $_GET['linkDiscordID'];
+					$linkSteamID64 = $_GET['linkSteamID64'];
+					$sql->query("INSERT INTO `$GuildID` (DiscordID, SteamID64) VALUES ($linkDiscordID, $linkSteamID64) ON DUPLICATE KEY UPDATE `DiscordID` = '".$linkDiscordID."', `SteamID64` = '".$linkSteamID64."', `Muted` = '0'");
 				}
 			} else {
 				echo nl2br ("Access denied!\n");
