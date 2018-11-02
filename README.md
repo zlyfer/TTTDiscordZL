@@ -46,7 +46,7 @@ And this is how they work together:
 Whether you want a quick setup using my service or want to setup everything by yourself you have two options:
 #### 1. Simple Way
  - [Install](#install-garrys-mod-server-script) the server script.
- - [Add](#add-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
+ - [Add](#add-the-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
  - [Configurate](#configurate-the-discord-bot) the Discord bot.
 
 #### 2. Advanced Way
