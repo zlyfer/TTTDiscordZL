@@ -5,11 +5,11 @@ In any cases you can use the command `~zltd~help` to receive help within Discord
 ## Index
 1. [Index](#index)
 2. [Using The Discord Bot](#using-the-discord-bot)
- * [How To Access Your Own SteamID64](#how-to-access-your-own-steamid64)
- * [Link Your DiscordID With Your SteamID64](#link-your-steamid64-with-your-discordid)
+    * [How To Access Your Own SteamID64](#how-to-access-your-own-steamid64)
+    * [Link Your DiscordID With Your SteamID64](#link-your-steamid64-with-your-discordid)
 3. [Using The In Game Chat](#using-the-in-game-chat)
- * [How To Access Your Own SteamID64](#how-to-access-your-own-discordid)
- * [Link Your DiscordID With Your SteamID64](#link-your-discordid-with-your-steamid64)
+    * [How To Access Your Own SteamID64](#how-to-access-your-own-discordid)
+    * [Link Your DiscordID With Your SteamID64](#link-your-discordid-with-your-steamid64)
 
 ## Using The Discord Bot
 ### How To Access Your Own SteamID64
