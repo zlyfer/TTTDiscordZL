@@ -3,13 +3,13 @@ This tutorial will cover how to link your SteamID64 with your DiscordID.
 In any cases you can use the command `~zltd~help` to receive help within Discord or in game.
 
 ## Index
-1. [Index](##index)
-2. [Using The Discord Bot](##using-the-discord-bot)
-  1. [How To Access Your Own SteamID64](###how-to-access-your-own-steamid64)
-  2. [Link Your DiscordID With Your SteamID64](###link-your-discordid-with-your-steamid64)
-3. [Using The In Game Chat](##using-the-in-game-chat)
-  1. [How To Access Your Own SteamID64](###how-to-access-your-own-steamid64)
-  2. [Link Your DiscordID With Your SteamID64](###link-your-discordid-with-your-steamid64)
+1. [Index](#index)
+2. [Using The Discord Bot](#using-the-discord-bot)
+  1. [How To Access Your Own SteamID64](#how-to-access-your-own-steamid64)
+  2. [Link Your DiscordID With Your SteamID64](#link-your-steamid64-with-your-discordid)
+3. [Using The In Game Chat](#using-the-in-game-chat)
+  1. [How To Access Your Own SteamID64](#how-to-access-your-own-discordid)
+  2. [Link Your DiscordID With Your SteamID64](#link-your-discordid-with-your-steamid64)
 
 ## Using The Discord Bot
 ### How To Access Your Own SteamID64

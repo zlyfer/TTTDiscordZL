@@ -2,12 +2,12 @@
 Each command - unless declared otherwise - can be used either in the in game chat or via Discord.
 
 ## Index
-1. [Index](##index)
-2. [Help](##help)
-3. [Mute](##manually-mute-yourself)
-4. [Unmute](##manually-unmute-yourself)
-5. [Link](##link-steamid64-with-discordid)
-6. [Generate New Token](##generate-new-token) (Discord only!)
+1. [Index](#index)
+2. [Help](#help)
+3. [Mute](#manually-mute-yourself)
+4. [Unmute](#manually-unmute-yourself)
+5. [Link](#link-steamid64-with-discordid)
+6. [Generate New Token](#generate-new-token) (Discord only!)
 
 ## Help
 Use the command `~zltd~help` in the in game chat or within the Discord text channel to receive help/a list of available commands.
