@@ -250,7 +250,7 @@ client.on("message", message => {
 							var SteamID64 = msg;
 							linkIDs(GuildID, AuthorID, SteamID64);
 							// message.reply(`I linked your DiscordID **${AuthorID}** with SteamID64 **${SteamID64}**.`);
-							message.react(":thumbsup:");
+							message.react("👍");
 							setTimeout(
 								function() {
 									message.delete();
