@@ -6,7 +6,7 @@ local GuildID = ""
 -- Insert the generated token the Discord bot sent you when you invited him.
 local Token = ""
 -- Change url to TTTDiscordZL.php on your website (Only if you want to use your own database & Discord server!).
-local Webpage = "https://zlyfer.net/sites/games/gmod_ttt/TTTDiscordZL.php"
+local Webpage = "https://old.zlyfer.net/sites/games/gmod_ttt/TTTDiscordZL.php"
 -- Variable for detecting if preround or postround is happening.
 local activateMute = false
 
