@@ -1,33 +1,36 @@
-print("TTTDiscordZL - by Frederik 'zlyfer' Shull")
-print("TTTDiscordZL - Use ~zltd~help or !!help for all commands!")
-
+-- Insert custom prefix to trigger the script.
+local prefix = "~z"
 -- Insert the ID of your Discord Server.
-local GuildID = ""
+local guildId = ""
 -- Insert the generated token the Discord bot sent you when you invited him.
-local Token = ""
+local token = ""
 -- Change url to TTTDiscordZL.php on your website (Only if you want to use your own database & Discord server!).
-local Webpage = "https://old.zlyfer.net/sites/games/gmod_ttt/TTTDiscordZL.php"
+local webpage = "https://old.zlyfer.net/sites/games/gmod_ttt/TTTDiscordZL.php"
+
+print("TTTDiscordZL - by Frederik 'zlyfer' Shull")
+print("TTTDiscordZL - Use "..prefix.."help for all commands!")
+
 -- Variable for detecting if preround or postround is happening.
 local activateMute = false
 
 -- Functions to un/mute players. Use either "all" for all or SteamID64 for a specific target.
 local function mute(target)
-	http.Fetch(Webpage.."?token="..Token.."&guildid="..GuildID.."&mute="..target)
+	http.Fetch(webpage.."?token="..token.."&guildid="..guildId.."&mute="..target)
 end
 local function unmute(target)
-	http.Fetch(Webpage.."?token="..Token.."&guildid="..GuildID.."&unmute="..target)
+	http.Fetch(webpage.."?token="..token.."&guildid="..guildId.."&unmute="..target)
 end
 -- Function to link the SteamID64 with the DiscordID from a player.
-local function link(DiscordID, SteamID64)
-	http.Fetch(Webpage.."?token="..Token.."&guildid="..GuildID.."&linkDiscordID="..DiscordID.."&linkSteamID64="..SteamID64)
+local function link(discordId, steamId64)
+	http.Fetch(webpage.."?token="..token.."&guildid="..guildId.."&linkDiscordID="..discordId.."&linkSteamID64="..SteamID64)
 end
 -- Function to display help message.
 local function sendHelp(player)
 	player:SendLua([[chat.AddText(Color(255, 255, 255), "Following commands are available:")]])
-	player:SendLua([[chat.AddText(Color(3, 169, 2441), "!!help", Color(255, 255, 255), " - Shows this help info.")]])
-	player:SendLua([[chat.AddText(Color(3, 169, 2441), "!!mute", Color(255, 255, 255), " - Mute yourself in Discord.")]])
-	player:SendLua([[chat.AddText(Color(3, 169, 2441), "!!unmute", Color(255, 255, 255), " - Unmute yourself in Discord.")]])
-	player:SendLua([[chat.AddText(Color(3, 169, 2441), "!!link [DiscordID]", Color(255, 255, 255), " - Link your SteamID to your DiscordID.")]])
+	player:SendLua([[chat.AddText(Color(3, 169, 2441), "]]..prefix..[["help", Color(255, 255, 255), " - Shows this help info.")]])
+	player:SendLua([[chat.AddText(Color(3, 169, 2441), "]]..prefix..[["mute", Color(255, 255, 255), " - Mute yourself in Discord.")]])
+	player:SendLua([[chat.AddText(Color(3, 169, 2441), "]]..prefix..[["unmute", Color(255, 255, 255), " - Unmute yourself in Discord.")]])
+	player:SendLua([[chat.AddText(Color(3, 169, 2441), "]]..prefix..[["link [DiscordID]", Color(255, 255, 255), " - Link your SteamID to your DiscordID.")]])
 end
 
 	-- Mute player upon death.
@@ -37,6 +40,7 @@ end
 				if victim:IsGhost() == false then -- Optional: If you have the addon Spectator Deathmatch installed, you want the Ghosts, to be unaffected.
 					mute(victim:SteamID64())
 					victim:SendLua([[chat.AddText(Color(255, 255, 255), "You got ", Color(244, 67, 54), "muted", Color(255, 255, 255), " in Discord because you died.")]])
+					victim:SendLua([[chat.AddText(Color(255, 255, 255), "Use ", Color(3, 169, 2441), "]]..prefix..[["unmute", Color(255, 255, 255), " to unmute yourself if necessary.")]])
 				end
 			end
 		end
@@ -76,7 +80,7 @@ end
 		if activateMute == true then
 			mute(player:SteamID64())
 			player:SendLua([[chat.AddText(Color(255, 255, 255), "You got ", Color(244, 67, 54), "muted", Color(255, 255, 255), " in Discord because there is an ongoing round.")]])
-			player:SendLua([[chat.AddText(Color(255, 255, 255), "Use ", Color(3, 169, 2441), "~zltd~unmute", Color(255, 255, 255), " or ", Color(3, 169, 2441), "!!unmute", Color(255, 255, 255), " to unmute yourself if necessary.")]])
+			player:SendLua([[chat.AddText(Color(255, 255, 255), "Use ", Color(3, 169, 2441), "]]..prefix..[["unmute", Color(255, 255, 255), " to unmute yourself if necessary.")]])
 		end
 	end)
 	-- Unmtute a player when he leaves.
@@ -86,22 +90,22 @@ end
 	-- Commands
 	hook.Add("PlayerSay", "TTTDiscordZLPlayerSay", function(player, text, team)
 		if GAMEMODE_NAME == "terrortown" then
-			if (string.lower(text) == "~zltd~help" or string.lower(text) == "!!help") then
+			if (string.lower(text) == prefix.."help") then
 				sendHelp(player)
 				return ""
-			elseif (string.lower(text) == "~zltd~mute" or string.lower(text) == "!!mute") then
+			elseif (string.lower(text) == prefix.."mute") then
 				BroadcastLua([[chat.AddText(Color(255, 255, 255), "]]..player:Name()..[[", Color(76, 175, 80), " muted ", Color(255, 255, 255), "him-/herself!")]])
 				mute(player:SteamID64())
-			elseif (string.lower(text) == "~zltd~unmute" or string.lower(text) == "!!unmute") then
+			elseif (string.lower(text) == prefix.."unmute") then
 				BroadcastLua([[chat.AddText(Color(255, 255, 255), "]]..player:Name()..[[", Color(244, 67, 54), " unmuted ", Color(255, 255, 255), "him-/herself!")]])
 				unmute(player:SteamID64())
-			elseif (string.find(string.lower(text), "~zltd~link") or string.find(string.lower(text), "!!link")) then
-				local DiscordID = string.sub(text, 12)
-				if DiscordID == "" then
-					player:SendLua([[chat.AddText(Color(244, 67, 54), "Error: ", Color(255, 255, 255), "Please send me your DiscordID aswell. (~zltd~link [DiscordID])")]])
+			elseif (string.find(string.lower(text), prefix.."link")) then
+				local discordId = string.sub(text, 12)
+				if discordId == "" then
+					player:SendLua([[chat.AddText(Color(244, 67, 54), "Error: ", Color(255, 255, 255), "Please send me your DiscordID aswell. ("]]..prefix..[["link [DiscordID])")]])
 				else
-					player:SendLua([[chat.AddText(Color(255, 255, 255), "I linked your SteamID64 (", Color(3, 169, 2441), "]]..player:SteamID64()..[[", Color(255, 255, 255), ") with your DiscordID (", Color(3, 169, 2441), "]]..DiscordID..[[", Color(255, 255, 255), ").")]])
-					link(DiscordID, player:SteamID64())
+					player:SendLua([[chat.AddText(Color(255, 255, 255), "I linked your SteamID64 (", Color(3, 169, 2441), "]]..player:SteamID64()..[[", Color(255, 255, 255), ") with your DiscordID (", Color(3, 169, 2441), "]]..discordId..[[", Color(255, 255, 255), ").")]])
+					link(discordId, player:SteamID64())
 				end
 				return ""
 			end
