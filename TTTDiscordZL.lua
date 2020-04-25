@@ -105,7 +105,7 @@ hook.Add("PlayerSay", "TTTDiscordZLPlayerSay", function(player, text, team)
 			if discordId == "" then
 				player:SendLua([[chat.AddText(Color(245, 65, 55), "Error: ", Color(255, 255, 255), "Please send me your DiscordID aswell. ("..GetGlobalString("prefix").."link [DiscordID])")]])
 			else
-				player:SendLua([[chat.AddText(Color(255, 255, 255), "I linked your SteamID64 (", Color(0, 135, 255), "]]..player:SteamID64()..[[", Color(255, 255, 255), ") with your DiscordID (", Color(0, 135, 255), "test", Color(255, 255, 255), ").")]])
+				player:SendLua([[chat.AddText(Color(255, 255, 255), "I linked your SteamID64 with your DiscordID.")]])
 				link(discordId, player:SteamID64())
 			end
 			return ""
