@@ -23,7 +23,7 @@ local function unmute(target)
 end
 -- Function to link the SteamID64 with the DiscordID from a player.
 local function link(discordId, steamId64)
-	http.Fetch(webpage.."?token="..token.."&guildid="..guildId.."&linkDiscordID="..discordId.."&linkSteamID64="..SteamID64)
+	http.Fetch(webpage.."?token="..token.."&guildid="..guildId.."&linkDiscordID="..discordId.."&linkSteamID64="..steamId64)
 end
 -- Function to display help message.
 local function sendHelp(player)
@@ -101,7 +101,8 @@ hook.Add("PlayerSay", "TTTDiscordZLPlayerSay", function(player, text, team)
 			BroadcastLua([[chat.AddText(Color(255, 255, 255), "]]..player:Name()..[[", Color(245, 65, 55), " unmuted ", Color(255, 255, 255), "him-/herself!")]])
 			unmute(player:SteamID64())
 		elseif (string.find(string.lower(text), prefix.."link")) then
-			local discordId = string.sub(text, string.len(prefix) + 5, string.len(prefix) + 17)
+			-- TODO: Check if length is 16.
+			local discordId = string.sub(text, string.len(prefix) + 6, string.len(prefix) + 23)
 			if discordId == "" then
 				player:SendLua([[chat.AddText(Color(245, 65, 55), "Error: ", Color(255, 255, 255), "Please send me your DiscordID aswell. ("..GetGlobalString("prefix").."link [DiscordID])")]])
 			else
