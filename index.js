@@ -320,11 +320,11 @@ client.on("ready", () => {
     init(client.guilds.array()[i]);
   }
 
-  schedule.scheduleJob("*/1 * * * * *", function () {
-    // setInterval(() => {
+  // schedule.scheduleJob("*/1 * * * * *", function () {
+  setInterval(() => {
     for (let i = 0; i < client.guilds.array().length; i++) {
       checkStatus(client.guilds.array()[i]);
     }
-    // }, 1000);
-  });
+  }, 1000);
+  // });
 });
