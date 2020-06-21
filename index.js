@@ -98,7 +98,7 @@ function linkIDs(GuildID, DiscordID, SteamID64) {
       DiscordID +
       ", " +
       SteamID64 +
-      ", '0') ON DUPLICATE KEY UPDATE DiscordID = " +
+      ", '0', '0') ON DUPLICATE KEY UPDATE DiscordID = " +
       DiscordID +
       ", SteamID64 = " +
       SteamID64 +
