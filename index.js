@@ -40,7 +40,7 @@ function getDiscordID(GuildID, SteamID64, callback) {
       var DiscordID = false;
       for (let i = 0; i < result.length; i++) {
         if ("DiscordID" in result[i]) {
-          var DiscordID = result[i].DiscordID;
+          DiscordID = result[i].DiscordID;
         }
         callback(DiscordID);
       }
@@ -55,7 +55,7 @@ function getSteamID64(GuildID, DiscordID, callback) {
       var SteamID64 = false;
       for (let i = 0; i < result.length; i++) {
         if ("SteamID64" in result[i]) {
-          var SteamID64 = result[i].SteamID64;
+          SteamID64 = result[i].SteamID64;
         }
         callback(SteamID64);
       }
@@ -94,7 +94,7 @@ function linkIDs(GuildID, DiscordID, SteamID64) {
   sql.query(
     "INSERT INTO `" +
       GuildID +
-      "` (DiscordID, SteamID64, Muted) VALUES (" +
+      "` (DiscordID, SteamID64, Muted, Connected) VALUES (" +
       DiscordID +
       ", " +
       SteamID64 +
