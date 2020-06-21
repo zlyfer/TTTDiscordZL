@@ -27,7 +27,7 @@ local function link(discordId, steamId64)
 end
 -- Function to set the connected status of a player.
 local function connected(steamId64, status)
-	http.Fetch(webpage.."?token="..token.."&guildid="..guildId.."&player="..steamId64.."&connected="..$status)
+	http.Fetch(webpage.."?token="..token.."&guildid="..guildId.."&player="..steamId64.."&connected="..status)
 end
 -- Function to display help message.
 local function sendHelp(player)
@@ -39,14 +39,12 @@ local function sendHelp(player)
 end
 
 -- Flag player as connected when connected.
-gameevent.Listen("player_connect")
-hook.Add("player_connect", "FlagConnected", function(data))
-	connected(data.networkid, "1")
+hook.Add("PlayerAuthed", "TTTDiscordZLConnected", function(player, steamId, uniqueId)
+	connected(player:SteamID64(), "1")
 end)
 -- Flag player as disconnected when connected.
-gameevent.Listen("player_disconnect")
-hook.Add("player_disconnect", "FlagDisconnected", function(data))
-	connected(data.networkid, "0")
+hook.Add("PlayerDisconnected", "TTTDiscordZLDisconnected", function(player)
+	connected(player:SteamID64(), "0")
 end)
 -- Mute player upon death.
 hook.Add("PlayerDeath", "TTTDiscordZLPlayerDeath", function (victim, inflictor, attacker)

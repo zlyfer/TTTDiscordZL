@@ -40,11 +40,11 @@ if (isset($_GET['token'])) {
           $linkDiscordID = $_GET['linkDiscordID'];
           $linkSteamID64 = $_GET['linkSteamID64'];
           $sql->query(
-            "INSERT INTO `$GuildID` (DiscordID, SteamID64) VALUES ($linkDiscordID, $linkSteamID64) ON DUPLICATE KEY UPDATE `DiscordID` = '" .
+            "INSERT INTO `$GuildID` (DiscordID, SteamID64, Muted, Connected) VALUES ($linkDiscordID, $linkSteamID64, 0, 0) ON DUPLICATE KEY UPDATE `DiscordID` = '" .
               $linkDiscordID .
               "', `SteamID64` = '" .
               $linkSteamID64 .
-              "', `Muted` = '0'"
+              "', `Muted` = '0', `Connected` = '0'"
           );
         }
         if (isset($_GET['connected']) && isset($_GET['player'])) {
