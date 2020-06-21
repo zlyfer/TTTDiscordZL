@@ -25,6 +25,10 @@ end
 local function link(discordId, steamId64)
 	http.Fetch(webpage.."?token="..token.."&guildid="..guildId.."&linkDiscordID="..discordId.."&linkSteamID64="..steamId64)
 end
+-- Function to set the connected status of a player.
+local function connected(steamId64, status)
+	http.Fetch(webpage.."?token="..token.."&guildid="..guildId.."&player="..steamId64.."&connected="..$status)
+end
 -- Function to display help message.
 local function sendHelp(player)
 	player:SendLua([[chat.AddText(Color(255, 255, 255), "Following commands are available:")]])
@@ -34,6 +38,16 @@ local function sendHelp(player)
 	player:SendLua([[chat.AddText(Color(0, 135, 255), GetGlobalString("prefix").."link [DiscordID]", Color(255, 255, 255), " - Link your SteamID to your DiscordID.")]])
 end
 
+-- Flag player as connected when connected.
+gameevent.Listen("player_connect")
+hook.Add("player_connect", "FlagConnected", function(data))
+	connected(data.networkid, "1")
+end)
+-- Flag player as disconnected when connected.
+gameevent.Listen("player_disconnect")
+hook.Add("player_disconnect", "FlagDisconnected", function(data))
+	connected(data.networkid, "0")
+end)
 -- Mute player upon death.
 hook.Add("PlayerDeath", "TTTDiscordZLPlayerDeath", function (victim, inflictor, attacker)
 	if GAMEMODE_NAME == "terrortown" then

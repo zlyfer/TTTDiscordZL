@@ -73,7 +73,7 @@ function checkStatus(guild) {
             let resulti = result[i];
             let member = getMember(guild, resulti.DiscordID);
             if (member) {
-              if (resulti.Muted == "1" && member.serverMute == false) {
+              if (resulti.Muted == "1" && resulti.Connected == "1" && member.serverMute == false) {
                 member
                   .setMute(true)
                   .then(console.log(`Muted ${member.user.id} from ${GuildID}. Reason: Set to muted.`));
@@ -102,7 +102,8 @@ function linkIDs(GuildID, DiscordID, SteamID64) {
       DiscordID +
       ", SteamID64 = " +
       SteamID64 +
-      ", Muted = 0",
+      ", Muted = 0" +
+      ", Connected = 0",
     (err, result) => {
       if (err) throw err;
     }
@@ -150,7 +151,7 @@ function guildInit(guild) {
   sql.query(
     "CREATE TABLE IF NOT EXISTS `" +
       guild.id +
-      "` (DiscordID VARCHAR(64) NOT NULL, SteamID64 VARCHAR(64) NOT NULL, Muted TINYINT(1) NOT NULL, UNIQUE ID (DiscordID))",
+      "` (DiscordID VARCHAR(64) NOT NULL, SteamID64 VARCHAR(64) NOT NULL, Muted TINYINT(1) NOT NULL, Connected TINYINT(1) UNIQUE ID (DiscordID))",
     (err, result) => {
       if (err) throw err;
     }
@@ -319,9 +320,11 @@ client.on("ready", () => {
     init(client.guilds.array()[i]);
   }
 
-  schedule.scheduleJob("*/1 * * * * *", function () {
+  // schedule.scheduleJob("*/1 * * * * *", function () {
+  setInterval(() => {
     for (let i = 0; i < client.guilds.array().length; i++) {
       checkStatus(client.guilds.array()[i]);
     }
-  });
+  }, 1000);
+  // });
 });
