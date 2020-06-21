@@ -151,7 +151,7 @@ function guildInit(guild) {
   sql.query(
     "CREATE TABLE IF NOT EXISTS `" +
       guild.id +
-      "` (DiscordID VARCHAR(64) NOT NULL, SteamID64 VARCHAR(64) NOT NULL, Muted TINYINT(1) NOT NULL, Connected TINYINT(1) UNIQUE ID (DiscordID))",
+      "` (DiscordID VARCHAR(64) NOT NULL, SteamID64 VARCHAR(64) NOT NULL, Muted TINYINT(1) NOT NULL, Connected TINYINT(1), UNIQUE ID (DiscordID))",
     (err, result) => {
       if (err) throw err;
     }
