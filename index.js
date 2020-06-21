@@ -2,7 +2,6 @@
 process.chdir("/home/zlyfer/DiscordBots/TTTDiscordZL");
 const mysql = require("mysql");
 const Discord = require("discord.js");
-const schedule = require("node-schedule");
 const uniqid = require("uniqid");
 const token = require("./token.json");
 const mysql_config = require("./mysql_config.json");
@@ -320,11 +319,9 @@ client.on("ready", () => {
     init(client.guilds.array()[i]);
   }
 
-  // schedule.scheduleJob("*/1 * * * * *", function () {
   setInterval(() => {
     for (let i = 0; i < client.guilds.array().length; i++) {
       checkStatus(client.guilds.array()[i]);
     }
   }, 1000);
-  // });
 });
