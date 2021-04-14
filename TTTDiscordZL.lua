@@ -1,3 +1,4 @@
+-- TODO: Regulary check who is connected and set the player connected flags. Somehow remove conencted flags of players who disconnect in loading screen.
 -- Insert custom prefix to trigger the script.
 local prefix = "~z"
 SetGlobalString("prefix", prefix)
