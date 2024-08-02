@@ -1,38 +1,47 @@
 // jshint esversion: 9
-const mysql = require("mysql");
-const Discord = require("discord.js");
+const mysql = require("mysql2");
+const { Client, GatewayIntentBits } = require("discord.js");
 const uniqid = require("uniqid");
-const token = require("./token.json");
-const mysql_config = require("./mysql_config.json");
+const { token } = require("./token.json");
+const db_config = require("./db_config.json");
 var sql = mysql.createConnection({
-  host: mysql_config.host,
-  user: mysql_config.user,
-  password: mysql_config.password,
-  database: mysql_config.database,
+  host: db_config.host,
+  user: db_config.user,
+  password: db_config.password,
+  database: db_config.database,
 });
 
-sql.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected to MySQL Database!");
+sql.connect((err) => {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id " + sql.threadId);
 });
 
-const client = new Discord.Client();
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
+});
 const botPrefix = "~zltd~";
 
 function checkPerm(guild, permission) {
   const botID = client.user.id;
-  let hasPerm = guild.members.find("id", botID).hasPermission(permission);
+  const hasPerm = getMember(guild, botID).hasPermission(permission);
   return hasPerm;
 }
 
 function getMember(guild, DiscordID) {
-  let member = guild.members.find("id", DiscordID);
+  const member = guild.members.cache.get(DiscordID);
   return member;
 }
 
 function getDiscordID(GuildID, SteamID64, callback) {
   sql.query(
-    "SELECT DiscordID FROM `" + GuildID + "` WHERE SteamID64 = " + SteamID64,
+    "SELECT DiscordID FROM `guild_" + GuildID + "` WHERE SteamID64 = " + SteamID64,
     (err, result) => {
       if (err) throw err;
       if (result) {
@@ -50,7 +59,7 @@ function getDiscordID(GuildID, SteamID64, callback) {
 
 function getSteamID64(GuildID, DiscordID, callback) {
   sql.query(
-    "SELECT SteamID64 FROM `" + GuildID + "` WHERE DiscordID = " + DiscordID,
+    "SELECT SteamID64 FROM `guild_" + GuildID + "` WHERE DiscordID = " + DiscordID,
     (err, result) => {
       if (err) throw err;
       if (result) {
@@ -69,7 +78,7 @@ function getSteamID64(GuildID, DiscordID, callback) {
 function checkStatus(guild) {
   if (checkPerm(guild, "MUTE_MEMBERS")) {
     let GuildID = guild.id;
-    sql.query("SELECT * FROM `" + GuildID + "`", (err, result) => {
+    sql.query("SELECT * FROM `guild_" + GuildID + "`", (err, result) => {
       if (result) {
         if (result.length != 0) {
           for (let i = 1; i < result.length; i++) {
@@ -101,7 +110,7 @@ function checkStatus(guild) {
 
 function linkIDs(GuildID, DiscordID, SteamID64) {
   sql.query(
-    "INSERT INTO `" +
+    "INSERT INTO `guild_" +
       GuildID +
       "` (DiscordID, SteamID64, Muted, Connected) VALUES (" +
       DiscordID +
@@ -128,7 +137,7 @@ function linkIDs(GuildID, DiscordID, SteamID64) {
 
 function unmute(GuildID, SteamID64) {
   sql.query(
-    "UPDATE `" + GuildID + "` SET Muted = '0' WHERE SteamID64 = " + SteamID64,
+    "UPDATE `guild_" + GuildID + "` SET Muted = '0' WHERE SteamID64 = " + SteamID64,
     (err, result) => {
       if (err) throw err;
     }
@@ -161,7 +170,7 @@ function tokenProcess(tokenCheck, guild) {
 
 function guildInit(guild) {
   sql.query(
-    "CREATE TABLE IF NOT EXISTS `" +
+    "CREATE TABLE IF NOT EXISTS `guild_" +
       guild.id +
       "` (DiscordID VARCHAR(64) NOT NULL, SteamID64 VARCHAR(64) NOT NULL, Muted TINYINT(1) NOT NULL, Connected TINYINT(1), UNIQUE ID (DiscordID))",
     (err, result) => {
@@ -228,7 +237,7 @@ function sendToken(guild) {
   });
 }
 
-client.on("message", (message) => {
+client.on("messageCreate", (message) => {
   var Guild = message.guild;
   var Author = message.author;
   var Channel = message.channel;
@@ -239,7 +248,7 @@ client.on("message", (message) => {
       MessageContent = String(MessageContent).split(" ");
       var cmd = MessageContent[0];
       var msg = MessageContent[1];
-      if (Channel.type == "text") {
+      if (Channel.type == 0) {
         var GuildID = Guild.id;
         var AuthorID = Author.id;
         var Member = getMember(Guild, AuthorID);
@@ -333,28 +342,20 @@ client.on("guildCreate", (guild) => {
 });
 
 client.on("ready", () => {
-  client.user
-    .setPresence({
-      status: "online",
-      afk: false,
-      game: {
-        name: "Use " + botPrefix + "help for help!",
-      },
-    })
-    .then(() => {
-      console.log(`Bot is ready.`);
-      console.log(`Logged in as ${client.user.tag}!`);
-    });
+  client.user.setActivity("Use " + botPrefix + "help for help!", { type: "PLAYING" });
 
-  for (let i = 0; i < client.guilds.array().length; i++) {
-    init(client.guilds.array()[i]);
+  for (let i = 0; i < client.guilds.cache.length; i++) {
+    init(client.guilds.cache[i]);
   }
 
   setInterval(() => {
-    for (let i = 0; i < client.guilds.array().length; i++) {
-      checkStatus(client.guilds.array()[i]);
+    for (let i = 0; i < client.guilds.cache.length; i++) {
+      checkStatus(client.guilds.cache[i]);
     }
   }, 1000);
+
+  console.log(`Bot is ready.`);
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
 /* ---------- Bot Shutdown ---------- */

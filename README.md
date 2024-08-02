@@ -112,7 +112,7 @@ with your DiscordID.
 ### (OPTIONAL) Setup Own Discord Bot
 
 1. Rename _token_template.json_ to _token.json_ and insert your Discord bot token into the quotation marks.
-2. Rename _mysql_config_template.json_ to _mysql_config.json_ and add your database credentials.
+2. Rename _db_config.template.json_ to _db_config.json_ and add your database credentials.
 3. Install bot dependencies and start the bot.
 
 #### Using [npm](https://www.npmjs.com/)

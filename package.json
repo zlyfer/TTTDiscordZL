@@ -4,11 +4,10 @@
   "description": "Mutes Discord Members when they die in Garry's Mod TTT.",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "11.3.2",
-    "mysql": "^2.15.0",
+    "discord.js": "^14.15.3",
+    "mysql2": "^3.11.0",
     "uniqid": "^5.0.3"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node ."
   },

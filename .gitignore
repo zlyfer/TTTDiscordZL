@@ -2,5 +2,5 @@ token.json
 node_modules
 1461792031164278115158466622024443239165351.ico
 desktop.ini
-mysql_config.json
-mysql_config.json.original
+db_config.json
+db_config.json.original
