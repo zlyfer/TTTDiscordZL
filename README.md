@@ -21,9 +21,10 @@ Connect a Garry's Mod Server with a Discord Server!
       2. [Using yarn](#using-yarn)
    5. [(OPTIONAL) Setup Own Database And Webpage](#optional-setup-own-database-and-webpage)
 5. [How To Basic](#how-to-basic)
-6. [FAQ](#faq)
+6. [ToDo](#todo)
+7. [FAQ](#faq)
    1. [Q: How do I get my token?](#q-how-do-i-get-my-token)
-7. [Disclaimer](#disclaimer)
+8. [Disclaimer](#disclaimer)
 
 ## Info
 
@@ -155,6 +156,10 @@ In case you want to use the [Advanced Way](#2-advanced-way) anyway the links bel
   [PowerShell](https://www.tenforums.com/tutorials/25581-open-windows-powershell-windows-10-a.html) on Windows.
 - How to open the [Terminal](https://www.lifewire.com/ways-to-open-a-terminal-console-window-using-ubuntu-4075024) on
   Linux.
+
+## ToDo
+
+1. Switch from botPrefix + command messages to /commands.
 
 ## FAQ
 
