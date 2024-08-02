@@ -6,11 +6,11 @@ SetGlobalString("prefix", prefix)
 local guildId = ""
 -- Insert the generated token the Discord bot sent you when you invited him.
 local token = ""
--- Change url to TTTDiscordZL.php on your website (Only if you want to use your own database & Discord server!).
-local webpage = "https://old.zlyfer.net/sites/games/gmod_ttt/TTTDiscordZL.php"
+-- Change url to TTTDiscordLink.php on your website (Only if you want to use your own database & Discord server!).
+local webpage = "https://old.zlyfer.net/sites/games/gmod_ttt/TTTDiscordLink.php"
 
-BroadcastLua([[chat.AddText(Color(100, 222, 22), "TTTDiscordZL", Color(255, 255, 255), " - by Frederik 'zlyfer' Shull")]])
-BroadcastLua([[chat.AddText(Color(100, 222, 22), "TTTDiscordZL", Color(255, 255, 255), " - Use ", Color(0, 135, 255), GetGlobalString("prefix").."help", Color(255, 255, 255), " for all commands!")]])
+BroadcastLua([[chat.AddText(Color(100, 222, 22), "TTTDiscordLink", Color(255, 255, 255), " - by Frederik 'zlyfer' Shull")]])
+BroadcastLua([[chat.AddText(Color(100, 222, 22), "TTTDiscordLink", Color(255, 255, 255), " - Use ", Color(0, 135, 255), GetGlobalString("prefix").."help", Color(255, 255, 255), " for all commands!")]])
 
 -- Variable for detecting if preround or postround is happening.
 local activateMute = false
@@ -40,15 +40,15 @@ local function sendHelp(player)
 end
 
 -- Flag player as connected when connected.
-hook.Add("PlayerAuthed", "TTTDiscordZLConnected", function(player, steamId, uniqueId)
+hook.Add("PlayerAuthed", "TTTDiscordLinkConnected", function(player, steamId, uniqueId)
 	connected(player:SteamID64(), "1")
 end)
 -- Flag player as disconnected when connected.
-hook.Add("PlayerDisconnected", "TTTDiscordZLDisconnected", function(player)
+hook.Add("PlayerDisconnected", "TTTDiscordLinkDisconnected", function(player)
 	connected(player:SteamID64(), "0")
 end)
 -- Mute player upon death.
-hook.Add("PlayerDeath", "TTTDiscordZLPlayerDeath", function (victim, inflictor, attacker)
+hook.Add("PlayerDeath", "TTTDiscordLinkPlayerDeath", function (victim, inflictor, attacker)
 	if GAMEMODE_NAME == "terrortown" then
 		if victim:IsBot() == false and activateMute == true then
 			if victim:IsGhost() == false then -- Optional: If you have the addon Spectator Deathmatch installed, you want the Ghosts, to be unaffected.
@@ -60,7 +60,7 @@ hook.Add("PlayerDeath", "TTTDiscordZLPlayerDeath", function (victim, inflictor, 
 	end
 end)
 -- Unmute player upon spawn/revive.
-hook.Add("PlayerSpawn", "TTTDiscordZLPlayerSpawn", function (player)
+hook.Add("PlayerSpawn", "TTTDiscordLinkPlayerSpawn", function (player)
 	if GAMEMODE_NAME == "terrortown" then
 		if player:IsBot() == false then
 			if player:IsGhost() == false then -- Optional: If you have the addon Spectator Deathmatch installed, you want the Ghosts, to be unaffected.
@@ -70,27 +70,27 @@ hook.Add("PlayerSpawn", "TTTDiscordZLPlayerSpawn", function (player)
 	end
 end)
 -- Unmute all players upon preparing phase. Ensures everyone gets unmuted porperly.
-hook.Add("TTTPrepareRound", "TTTDiscordZLTTTPrepareRound", function ()
+hook.Add("TTTPrepareRound", "TTTDiscordLinkTTTPrepareRound", function ()
 	if GAMEMODE_NAME == "terrortown" then
 		activateMute = false
 		unmute("all")
 	end
 end)
 -- Check if round has started.
-hook.Add("TTTBeginRound", "TTTDiscordZLTTTBeginRound", function ()
+hook.Add("TTTBeginRound", "TTTDiscordLinkTTTBeginRound", function ()
 	if GAMEMODE_NAME == "terrortown" then
 		activateMute = true
 	end
 end)
 -- Same as above but faster and less secure; If player get killed post round they will be muted again.
-hook.Add("TTTEndRound", "TTTDiscordZLTTTEndRound", function (result)
+hook.Add("TTTEndRound", "TTTDiscordLinkTTTEndRound", function (result)
 	if GAMEMODE_NAME == "terrortown" then
 		unmute("all")
 		activateMute = false
 	end
 end)
 -- Mute a player if he connects while a round is running.
-hook.Add("PlayerInitialSpawn", "TTTDiscordZLPlayerInitialSpawn", function(player)
+hook.Add("PlayerInitialSpawn", "TTTDiscordLinkPlayerInitialSpawn", function(player)
 	if activateMute == true then
 		mute(player:SteamID64())
 		player:SendLua([[chat.AddText(Color(255, 255, 255), "You got ", Color(245, 65, 55), "muted", Color(255, 255, 255), " in Discord because there is an ongoing round.")]])
@@ -98,11 +98,11 @@ hook.Add("PlayerInitialSpawn", "TTTDiscordZLPlayerInitialSpawn", function(player
 	end
 end)
 -- Unmtute a player when he leaves.
-hook.Add("PlayerDisconnected", "TTTDiscordZLPlayerDisconnected", function(player)
+hook.Add("PlayerDisconnected", "TTTDiscordLinkPlayerDisconnected", function(player)
 	unmute(player:SteamID64());
 end)
 -- Commands
-hook.Add("PlayerSay", "TTTDiscordZLPlayerSay", function(player, text, team)
+hook.Add("PlayerSay", "TTTDiscordLinkPlayerSay", function(player, text, team)
 	if GAMEMODE_NAME == "terrortown" then
 		if (string.lower(text) == prefix.."help") then
 			sendHelp(player)
@@ -128,7 +128,7 @@ hook.Add("PlayerSay", "TTTDiscordZLPlayerSay", function(player, text, team)
 end)
 -- Optional: Unmute player upon found corpse. Not recommended for large player groups.
 --[[
-hook.Add("TTTBodyFound", "TTTDiscordZLBodyFound", function(player, deadplayer, rag)
+hook.Add("TTTBodyFound", "TTTDiscordLinkBodyFound", function(player, deadplayer, rag)
 	if GAMEMODE_NAME == "terrortown" then
 		unmute(deadplayer:SteamID64())
 	end

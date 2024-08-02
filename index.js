@@ -1,5 +1,4 @@
 // jshint esversion: 9
-process.chdir("/home/zlyfer/DiscordBots/TTTDiscordZL");
 const mysql = require("mysql");
 const Discord = require("discord.js");
 const uniqid = require("uniqid");
@@ -18,7 +17,6 @@ sql.connect(function (err) {
 });
 
 const client = new Discord.Client();
-client.login(token.token);
 const botPrefix = "~zltd~";
 
 function checkPerm(guild, permission) {
@@ -33,33 +31,39 @@ function getMember(guild, DiscordID) {
 }
 
 function getDiscordID(GuildID, SteamID64, callback) {
-  sql.query("SELECT DiscordID FROM `" + GuildID + "` WHERE SteamID64 = " + SteamID64, (err, result) => {
-    if (err) throw err;
-    if (result) {
-      var DiscordID = false;
-      for (let i = 0; i < result.length; i++) {
-        if ("DiscordID" in result[i]) {
-          DiscordID = result[i].DiscordID;
+  sql.query(
+    "SELECT DiscordID FROM `" + GuildID + "` WHERE SteamID64 = " + SteamID64,
+    (err, result) => {
+      if (err) throw err;
+      if (result) {
+        var DiscordID = false;
+        for (let i = 0; i < result.length; i++) {
+          if ("DiscordID" in result[i]) {
+            DiscordID = result[i].DiscordID;
+          }
+          callback(DiscordID);
         }
-        callback(DiscordID);
       }
     }
-  });
+  );
 }
 
 function getSteamID64(GuildID, DiscordID, callback) {
-  sql.query("SELECT SteamID64 FROM `" + GuildID + "` WHERE DiscordID = " + DiscordID, (err, result) => {
-    if (err) throw err;
-    if (result) {
-      var SteamID64 = false;
-      for (let i = 0; i < result.length; i++) {
-        if ("SteamID64" in result[i]) {
-          SteamID64 = result[i].SteamID64;
+  sql.query(
+    "SELECT SteamID64 FROM `" + GuildID + "` WHERE DiscordID = " + DiscordID,
+    (err, result) => {
+      if (err) throw err;
+      if (result) {
+        var SteamID64 = false;
+        for (let i = 0; i < result.length; i++) {
+          if ("SteamID64" in result[i]) {
+            SteamID64 = result[i].SteamID64;
+          }
+          callback(SteamID64);
         }
-        callback(SteamID64);
       }
     }
-  });
+  );
 }
 
 function checkStatus(guild) {
@@ -75,11 +79,17 @@ function checkStatus(guild) {
               if (resulti.Muted == "1" && resulti.Connected == "1" && member.serverMute == false) {
                 member
                   .setMute(true)
-                  .then(console.log(`Muted ${member.user.id} from ${GuildID}. Reason: Set to muted.`));
+                  .then(
+                    console.log(`Muted ${member.user.id} from ${GuildID}. Reason: Set to muted.`)
+                  );
               } else if (resulti.Muted == "0" && member.serverMute == true) {
                 member
                   .setMute(false)
-                  .then(console.log(`Unmuted ${member.user.id} from ${GuildID}. Reason: Set to unmuted.`));
+                  .then(
+                    console.log(
+                      `Unmuted ${member.user.id} from ${GuildID}. Reason: Set to unmuted.`
+                    )
+                  );
               }
             }
           }
@@ -117,9 +127,12 @@ function linkIDs(GuildID, DiscordID, SteamID64) {
 // }
 
 function unmute(GuildID, SteamID64) {
-  sql.query("UPDATE `" + GuildID + "` SET Muted = '0' WHERE SteamID64 = " + SteamID64, (err, result) => {
-    if (err) throw err;
-  });
+  sql.query(
+    "UPDATE `" + GuildID + "` SET Muted = '0' WHERE SteamID64 = " + SteamID64,
+    (err, result) => {
+      if (err) throw err;
+    }
+  );
 }
 
 function init(guild) {
@@ -201,12 +214,15 @@ function sendToken(guild) {
         .send(
           "This is your token: `" +
             resulti.Token +
-            "`.\nYou need to insert this token inside the _TTTDiscordZL.lua_ file.\nFor more information visit https://github.com/zlyfer/TTTDiscordZL#install-garrys-mod-server-script.\nHave fun!"
+            "`.\nYou need to insert this token inside the _TTTDiscordLink.lua_ file.\nFor more information visit https://github.com/zlyfer/TTTDiscordLink#install-garrys-mod-server-script.\nHave fun!"
         )
         .then(() => {
-          sql.query("UPDATE `tokens` SET TokenSent = '1' WHERE GuildID = " + guild.id, (err, result) => {
-            if (err) throw err;
-          });
+          sql.query(
+            "UPDATE `tokens` SET TokenSent = '1' WHERE GuildID = " + guild.id,
+            (err, result) => {
+              if (err) throw err;
+            }
+          );
         });
     }
   });
@@ -251,9 +267,17 @@ client.on("message", (message) => {
             reply += "Make sure to use **" + botPrefix + "** as prefix!\n";
             reply += "The format is: **COMMAND** __PARAMETER__ - *DESCRIPTION*.\n\n";
             for (var key in helpObj) {
-              reply += "**" + key + "** __" + helpObj[key].parameter + "__ - *" + helpObj[key].desc + "*\n";
+              reply +=
+                "**" +
+                key +
+                "** __" +
+                helpObj[key].parameter +
+                "__ - *" +
+                helpObj[key].desc +
+                "*\n";
             }
-            reply += "\nINFO: If you encounter any issues or have questions, feel free to contact me.\n";
+            reply +=
+              "\nINFO: If you encounter any issues or have questions, feel free to contact me.\n";
             message.reply(reply);
             break;
           case "link":
@@ -290,11 +314,15 @@ client.on("message", (message) => {
             }
             break;
           default:
-            message.reply(`sorry I didn't understand that. Use **${botPrefix}help** to see all available commands.`);
+            message.reply(
+              `sorry I didn't understand that. Use **${botPrefix}help** to see all available commands.`
+            );
             break;
         }
       } else {
-        message.reply(`Sorry I am supposed to be controlled via a text channel on a discord server.`);
+        message.reply(
+          `Sorry I am supposed to be controlled via a text channel on a discord server.`
+        );
       }
     }
   }
@@ -313,7 +341,10 @@ client.on("ready", () => {
         name: "Use " + botPrefix + "help for help!",
       },
     })
-    .then(console.log("Bot ready."));
+    .then(() => {
+      console.log(`Bot is ready.`);
+      console.log(`Logged in as ${client.user.tag}!`);
+    });
 
   for (let i = 0; i < client.guilds.array().length; i++) {
     init(client.guilds.array()[i]);
@@ -325,3 +356,22 @@ client.on("ready", () => {
     }
   }, 1000);
 });
+
+/* ---------- Bot Shutdown ---------- */
+
+const handleShutdown = async () => {
+  console.info("Logging out and shutting down...");
+  await client.destroy();
+  process.exit(0);
+};
+
+process.on("SIGINT", handleShutdown);
+process.on("SIGTERM", handleShutdown);
+
+process.on("unhandledRejection", (err) => {
+  console.error("UNHANDLED: " + err);
+});
+
+/* ----------- Bot Startup ---------- */
+
+client.login(token);

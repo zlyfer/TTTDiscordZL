@@ -3,7 +3,7 @@ error_reporting(0);
 // Path to sql_credentials.php
 include './sql_credentials.php';
 $sqlServer = "127.0.0.1";
-$sqlDatabase = "TTTDiscordZL";
+$sqlDatabase = "TTTDiscordLink";
 
 $sql = new MySQLi($sqlServer, $sqlUser, $sqlPassword, $sqlDatabase);
 $sql->set_charset("utf8");

@@ -1,4 +1,4 @@
-# TTTDiscordZL
+# TTTDiscordLink
 
 Connect a Garry's Mod Server with a Discord Server!
 
@@ -32,7 +32,7 @@ Connect a Garry's Mod Server with a Discord Server!
 When you die in Garry's Mod Trouble in Terrorist Town, you normally are not allowed to speak anymore. You will be muted
 automatically in game and can't talk anymore until you respawn. Since some people use Discord as an alternative voice
 chat with higher quality the in game voice chat is less in use. In Discord you have to mute yourself or be silent
-"manually" to avoid disturbance. TTTDiscordZL is a setup that connects your Garry's Mod server and your Discord server
+"manually" to avoid disturbance. TTTDiscordLink is a setup that connects your Garry's Mod server and your Discord server
 to automatically mute players who die and unmute them when they get revived or respawn.
 
 ### How It Works
@@ -79,17 +79,17 @@ Here are a couple of additional documentations that may help you.
 
 ### Install Garry's Mod Server Script
 
-1. Move _TTTDiscordZL.lua_ to _GMOD_SERVER_DIRECTORY/garrysmod/garrysmod/lua/autorun/server_.
+1. Move _TTTDiscordLink.lua_ to _GMOD_SERVER_DIRECTORY/garrysmod/garrysmod/lua/autorun/server_.
 2. Insert your Discord server ID into the quotation marks at `local DiscordID = ""`.
 3. Insert your token you received from the Discord bot into the quotation marks at `local Token = ""`.
 4. Restart your Garry's Mod server.
 5. [**OPTIONAL**] Only if you want to use your own Discord server & database:
-   - Change the URL in the quotation marks to your own URL pointing to TTTDiscordZL.php at
-     `local Webpage = "https://old.zlyfer.net/sites/games/gmod_ttt/TTTDiscordZL.php"`.
+   - Change the URL in the quotation marks to your own URL pointing to TTTDiscordLink.php at
+     `local Webpage = "https://old.zlyfer.net/sites/games/gmod_ttt/TTTDiscordLink.php"`.
 
 ### Add The Discord Bot To Your Own Discord Server
 
-1. Use this link to add my bot TTTDiscordZL to your Discord server:
+1. Use this link to add my bot TTTDiscordLink to your Discord server:
    [Discord Bot Invite](https://discordapp.com/oauth2/authorize?client_id=424687518966087682&scope=bot&permissions=4197376).
 
 - Keep in mind that the bot needs following rights: _MUTE_MEMBERS_ and _VIEW_CHANNEL_.
@@ -97,7 +97,7 @@ Here are a couple of additional documentations that may help you.
 - See [Discord Bot Permissions](https://discordapp.com/developers/docs/topics/permissions) for reference.
 
 2. Upon invitation the bot will send you a token. As [mentioned](#install-garrys-mod-server-script), you need to insert
-   this token inside of _TTTDiscordZL.lua_.
+   this token inside of _TTTDiscordLink.lua_.
 
 ### Configurate The Discord Bot
 
@@ -127,10 +127,10 @@ with your DiscordID.
 
 ### (OPTIONAL) Setup Own Database And Webpage
 
-1. Move _TTTDiscordZL.php_ to a directory on your webserver. Make sure it is exactly where `local Webpage` in
-   _TTTDiscordZL.lua_ is pointing to.
-2. Fill in your database credentials using the variables in _TTTDiscordZL.php_.
-3. Create a database called 'TTTDiscordZL' and invite your Discord bot to your Discord server.
+1. Move _TTTDiscordLink.php_ to a directory on your webserver. Make sure it is exactly where `local Webpage` in
+   _TTTDiscordLink.lua_ is pointing to.
+2. Fill in your database credentials using the variables in _TTTDiscordLink.php_.
+3. Create a database called 'TTTDiscordLink' and invite your Discord bot to your Discord server.
 
 - If you already invited the bot to the server simply restart the Discord bot.
 
@@ -171,7 +171,7 @@ The links and tutorials are quickly searched in a haste. I am not responsible if
 open an issue if you have questions. In case you are unsure or worried, please use the [Simple Way](#1-simple-way) as
 mentioned.
 
-### General Use Of TTTDiscordZL
+### General Use Of TTTDiscordLink
 
 The bot will be able to server-side un/mute people on your discord server!
 

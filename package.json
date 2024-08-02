@@ -1,5 +1,5 @@
 {
-  "name": "TTTDiscordBot",
+  "name": "tttdiscordlink",
   "version": "1.0.0",
   "description": "Mutes Discord Members when they die in Garry's Mod TTT.",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "electron ."
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   "author": "zlyfer",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/zlyfer/DiscordDynChanBot/issues"
+    "url": "https://github.com/zlyfer/TTTDiscordZL/issues"
   },
   "homepage": "https://zlyfer.net/"
 }
