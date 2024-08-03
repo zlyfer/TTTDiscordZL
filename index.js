@@ -40,117 +40,105 @@ function getMember(guild, DiscordID) {
 }
 
 function getDiscordID(GuildID, SteamID64, callback) {
-  sql.query(
-    "SELECT DiscordID FROM `guild_" + GuildID + "` WHERE SteamID64 = " + SteamID64,
-    (err, result) => {
-      if (err) throw err;
-      if (result) {
-        var DiscordID = false;
-        for (let i = 0; i < result.length; i++) {
-          if ("DiscordID" in result[i]) {
-            DiscordID = result[i].DiscordID;
-          }
-          callback(DiscordID);
-        }
-      }
+  const query = `
+    SELECT DiscordID FROM guild_${GuildID} WHERE SteamID64 = ?
+  `;
+
+  sql.query(query, [SteamID64], (err, result) => {
+    if (err) throw err;
+    if (result && result.length > 0) {
+      callback(result[0].DiscordID || false);
+    } else {
+      callback(false);
     }
-  );
+  });
 }
 
 function getSteamID64(GuildID, DiscordID, callback) {
-  sql.query(
-    "SELECT SteamID64 FROM `guild_" + GuildID + "` WHERE DiscordID = " + DiscordID,
-    (err, result) => {
-      if (err) throw err;
-      if (result) {
-        var SteamID64 = false;
-        for (let i = 0; i < result.length; i++) {
-          if ("SteamID64" in result[i]) {
-            SteamID64 = result[i].SteamID64;
-          }
-          callback(SteamID64);
-        }
-      }
+  const query = `
+    SELECT SteamID64 FROM guild_${GuildID} WHERE DiscordID = ?
+  `;
+
+  sql.query(query, [DiscordID], (err, result) => {
+    if (err) throw err;
+    if (result && result.length > 0) {
+      callback(result[0].SteamID64 || false);
+    } else {
+      callback(false);
     }
-  );
+  });
 }
 
 function checkStatus(guild) {
   if (checkPerm(guild, "MUTE_MEMBERS")) {
-    let GuildID = guild.id;
-    sql.query("SELECT * FROM `guild_" + GuildID + "`", (err, result) => {
-      if (result) {
-        if (result.length != 0) {
-          for (let i = 1; i < result.length; i++) {
-            let resulti = result[i];
-            let member = getMember(guild, resulti.DiscordID);
-            if (member) {
-              if (resulti.Muted == "1" && resulti.Connected == "1" && member.serverMute == false) {
-                member
-                  .setMute(true)
-                  .then(
-                    console.log(`Muted ${member.user.id} from ${GuildID}. Reason: Set to muted.`)
-                  );
-              } else if (resulti.Muted == "0" && member.serverMute == true) {
-                member
-                  .setMute(false)
-                  .then(
-                    console.log(
-                      `Unmuted ${member.user.id} from ${GuildID}. Reason: Set to unmuted.`
-                    )
-                  );
-              }
+    const GuildID = guild.id;
+    const query = `
+      SELECT * FROM guild_${GuildID}
+    `;
+
+    sql.query(query, (err, result) => {
+      if (err) throw err;
+      if (result && result.length > 0) {
+        result.forEach((resulti) => {
+          const member = getMember(guild, resulti.DiscordID);
+          if (member) {
+            if (resulti.Muted == "1" && resulti.Connected == "1" && !member.serverMute) {
+              member.setMute(true).then(() => {
+                console.log(`Muted ${member.user.id} from ${GuildID}. Reason: Set to muted.`);
+              });
+            } else if (resulti.Muted == "0" && member.serverMute) {
+              member.setMute(false).then(() => {
+                console.log(`Unmuted ${member.user.id} from ${GuildID}. Reason: Set to unmuted.`);
+              });
             }
           }
-        }
+        });
       }
     });
   }
 }
 
 function linkIDs(GuildID, DiscordID, SteamID64) {
-  sql.query(
-    "INSERT INTO `guild_" +
-      GuildID +
-      "` (DiscordID, SteamID64, Muted, Connected) VALUES (" +
-      DiscordID +
-      ", " +
-      SteamID64 +
-      ", '0', '0') ON DUPLICATE KEY UPDATE DiscordID = " +
-      DiscordID +
-      ", SteamID64 = " +
-      SteamID64 +
-      ", Muted = 0" +
-      ", Connected = 0",
-    (err, result) => {
-      if (err) throw err;
-    }
-  );
+  const query = `
+    INSERT INTO guild_${GuildID} (DiscordID, SteamID64, Muted, Connected)
+    VALUES (?, ?, '0', '0')
+    ON DUPLICATE KEY UPDATE
+    DiscordID = VALUES(DiscordID),
+    SteamID64 = VALUES(SteamID64),
+    Muted = VALUES(Muted),
+    Connected = VALUES(Connected)
+  `;
+
+  sql.query(query, [DiscordID, SteamID64], (err, result) => {
+    if (err) throw err;
+    console.log("Row inserted or updated");
+  });
 }
 
-// Not used yet.
-// function mute(GuildID, SteamID64) {
-// 	sql.query("UPDATE `" + GuildID + "` SET Muted = '1' WHERE SteamID64 = " + SteamID64, (err, result) => {
-// 		if (err) throw err;
-// 	});
-// }
-
 function unmute(GuildID, SteamID64) {
-  sql.query(
-    "UPDATE `guild_" + GuildID + "` SET Muted = '0' WHERE SteamID64 = " + SteamID64,
-    (err, result) => {
-      if (err) throw err;
-    }
-  );
+  const query = `
+    UPDATE guild_${GuildID} SET Muted = '0' WHERE SteamID64 = ?
+  `;
+
+  sql.query(query, [SteamID64], (err, result) => {
+    if (err) throw err;
+  });
 }
 
 function init(guild) {
-  sql.query(
-    "CREATE TABLE IF NOT EXISTS `tokens` (GuildID VARCHAR(64) NOT NULL, Token VARCHAR(18) NOT NULL, TokenSent TINYINT(1) NOT NULL, UNIQUE ID (GuildID))",
-    (err, result) => {
-      if (err) throw err;
-    }
-  );
+  const query = `
+    CREATE TABLE IF NOT EXISTS tokens (
+      GuildID VARCHAR(64) NOT NULL,
+      Token VARCHAR(18) NOT NULL,
+      TokenSent TINYINT(1) NOT NULL,
+      UNIQUE (GuildID)
+    )
+  `;
+
+  sql.query(query, (err, result) => {
+    if (err) throw err;
+  });
+
   guildInit(guild);
   checkToken(guild);
 }
@@ -169,69 +157,75 @@ function tokenProcess(tokenCheck, guild) {
 }
 
 function guildInit(guild) {
-  sql.query(
-    "CREATE TABLE IF NOT EXISTS `guild_" +
-      guild.id +
-      "` (DiscordID VARCHAR(64) NOT NULL, SteamID64 VARCHAR(64) NOT NULL, Muted TINYINT(1) NOT NULL, Connected TINYINT(1), UNIQUE ID (DiscordID))",
-    (err, result) => {
-      if (err) throw err;
-    }
-  );
+  const query = `
+    CREATE TABLE IF NOT EXISTS guild_${guild.id} (
+      DiscordID VARCHAR(64) NOT NULL,
+      SteamID64 VARCHAR(64) NOT NULL,
+      Muted TINYINT(1) NOT NULL,
+      Connected TINYINT(1),
+      UNIQUE (DiscordID)
+    )
+  `;
+
+  sql.query(query, (err, result) => {
+    if (err) throw err;
+  });
 }
 
 function checkToken(guild) {
-  sql.query("SELECT TokenSent FROM `tokens` WHERE GuildID = " + guild.id, (err, result) => {
+  const query = `
+    SELECT TokenSent FROM tokens WHERE GuildID = ?
+  `;
+
+  sql.query(query, [guild.id], (err, result) => {
     if (err) throw err;
-    if (result) {
-      if (result.length != 0) {
-        let resulti = result[0];
-        if (resulti.TokenSent == 1) {
-          tokenProcess(false, guild);
-        } else if (resulti.TokenSent == 0) {
-          tokenProcess("send", guild);
-        }
-      } else {
-        tokenProcess("create", guild);
+    if (result && result.length !== 0) {
+      const resulti = result[0];
+      if (resulti.TokenSent == 1) {
+        tokenProcess(false, guild);
+      } else if (resulti.TokenSent == 0) {
+        tokenProcess("send", guild);
       }
+    } else {
+      tokenProcess("create", guild);
     }
   });
 }
 
 function createToken(guild) {
-  let token = uniqid();
-  sql.query(
-    "INSERT INTO `tokens` (GuildID, Token, TokenSent) VALUES (" +
-      guild.id +
-      ", '" +
-      token +
-      "', 0) ON DUPLICATE KEY UPDATE Token = '" +
-      token +
-      "'",
-    (err, result) => {
-      if (err) throw err;
-    }
-  );
+  const token = uniqid();
+  const query = `
+    INSERT INTO tokens (GuildID, Token, TokenSent)
+    VALUES (?, ?, 0)
+    ON DUPLICATE KEY UPDATE Token = VALUES(Token)
+  `;
+
+  sql.query(query, [guild.id, token], (err, result) => {
+    if (err) throw err;
+  });
   sendToken(guild);
 }
 
 function sendToken(guild) {
-  sql.query("SELECT Token FROM `tokens` WHERE GuildID = " + guild.id, (err, result) => {
+  const query = `
+    SELECT Token FROM tokens WHERE GuildID = ?
+  `;
+
+  sql.query(query, [guild.id], (err, result) => {
     if (err) throw err;
-    if (result.length != 0) {
-      let resulti = result[0];
+    if (result.length !== 0) {
+      const resulti = result[0];
       guild.owner
         .send(
-          "This is your token: `" +
-            resulti.Token +
-            "`.\nYou need to insert this token inside the _TTTDiscordLink.lua_ file.\nFor more information visit https://github.com/zlyfer/TTTDiscordLink#install-garrys-mod-server-script.\nHave fun!"
+          `This is your token: \`${resulti.Token}\`.\nYou need to insert this token inside the _TTTDiscordLink.lua_ file.\nFor more information visit https://github.com/zlyfer/TTTDiscordLink#install-garrys-mod-server-script.\nHave fun!`
         )
         .then(() => {
-          sql.query(
-            "UPDATE `tokens` SET TokenSent = '1' WHERE GuildID = " + guild.id,
-            (err, result) => {
-              if (err) throw err;
-            }
-          );
+          const updateQuery = `
+            UPDATE tokens SET TokenSent = 1 WHERE GuildID = ?
+          `;
+          sql.query(updateQuery, [guild.id], (err, result) => {
+            if (err) throw err;
+          });
         });
     }
   });
