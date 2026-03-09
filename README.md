@@ -15,7 +15,7 @@ Connect a Garry's Mod Server with a Discord Server!
 4. [Getting Started](#getting-started)
    1. [Install Garry's Mod Server Script](#install-garrys-mod-server-script)
    2. [Add The Discord Bot To Your Own Server](#add-the-discord-bot-to-your-own-discord-server)
-   3. [Configurate The Discord Bot](#configurate-the-discord-bot)
+   3. [Configure The Discord Bot](#configure-the-discord-bot)
    4. [(OPTIONAL) Setup Own Discord Bot](#optional-setup-own-discord-bot)
       1. [Using npm](#using-npm)
       2. [Using yarn](#using-yarn)
@@ -59,14 +59,14 @@ Whether you want a quick setup using my service or want to setup everything by y
 
 - [Install](#install-garrys-mod-server-script) the server script.
 - [Add](#add-the-discord-bot-to-your-own-discord-server) my Discord bot to your Discord server.
-- [Configurate](#configurate-the-discord-bot) the Discord bot.
+- [Configure](#configure-the-discord-bot) the Discord bot.
 
 #### 2. Advanced Way
 
 - [Install](#install-garrys-mod-server-script) the server script.
 - [Setup](#optional-setup-own-discord-bot) your own Discord bot.
 - Add your own Discord bot to your Discord server.
-- [Configurate](#configurate-the-discord-bot) the Discord bot.
+- [Configure](#configure-the-discord-bot) the Discord bot.
 - [Setup](#optional-setup-own-database-and-webpage) your own database and webpage.
 
 ## Additional Documentations
@@ -100,7 +100,7 @@ Here are a couple of additional documentations that may help you.
 2. Upon invitation the bot will send you a token. As [mentioned](#install-garrys-mod-server-script), you need to insert
    this token inside of _TTTDiscordLink.lua_.
 
-### Configurate The Discord Bot
+### Configure The Discord Bot
 
 Every player has to tell the bot which SteamID64 they have.
 
